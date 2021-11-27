@@ -93,9 +93,73 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="事务："><a href="#事务：" class="headerlink" title="事务："></a>事务：</h1><p>​    客官请移步到这 <a target="_blank" rel="noopener" href="https://zivlnoff.github.io/">事务</a></p>
-<h1 id="分布式事务：（使用场景？"><a href="#分布式事务：（使用场景？" class="headerlink" title="分布式事务：（使用场景？"></a>分布式事务：（使用场景？</h1><p>​    随着互联网的飞速发展，单节点瓶颈、无容灾、负载能力低、难以维护、无法灵活扩展的单体架构在规模庞大的工程里已无力回天，当然这也促成了分布式计算、分布式存储、分布式服务登上大荧幕。而在企业中，最令人头疼的就是怎么让分布式存储不出错性能又好，那就需要对分布式事务有极其敏锐的认识。</p>
-<h2 id="CAP定理："><a href="#CAP定理：" class="headerlink" title="CAP定理："></a>CAP定理：</h2>
+        <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>​    客官请移步到这 <a target="_blank" rel="noopener" href="https://zivlnoff.github.io/">事务</a></p>
+<h1 id="分布式事务（使用场景？"><a href="#分布式事务（使用场景？" class="headerlink" title="分布式事务（使用场景？"></a>分布式事务（使用场景？</h1><p>​    随着互联网的飞速发展，单节点瓶颈、无容灾、负载能力低、难以维护、无法灵活扩展的单体架构在规模庞大的工程里已无力回天，当然这也促成了分布式计算、分布式存储、分布式服务登上大荧幕。而在企业中，最令人头疼的就是怎么让分布式存储不出错性能又好，那就需要对分布式事务有极其敏锐的认识。</p>
+<p>​    在分布式场景下除了保证事务的ACID性质，还需要尽可能的满足CAP，即C(一致性)、A(可用性)、P(分区容忍性)的要求，一般情况下，我们简单的实现会是这样：有一个调停者(Mediator)去管理多个协同者（Colleague），已达到一致性的要求。调停者类似老师接收到学校的通知，下达到每一个同学，保证学生都能接收到学校的通知。</p>
+<p>​    基于此出现了调停者模式:</p>
+<p>![image-20211127154524244](/Users/alsc/Library/Application Support/typora-user-images/image-20211127154524244.png)</p>
+<ul>
+<li><p><strong>Mediator抽象中介者角色</strong><br> 抽象中介者角色定义统一的接口，用于各同事角色之间的通信。</p>
+</li>
+<li><p><strong>ConcreteMediator具体中介者角色</strong><br> 具体中介者角色通过协调各同事实现协作行为，因此它必须依赖于各个具体同事角色。</p>
+</li>
+<li><p><strong>Colleague同事角色</strong><br> 每一个同事角色都知道中介者角色，而且与其他的同事角色通信的时候，一定要通过中介者角色协作。</p>
+</li>
+<li><p><strong>ConcreateColleague具体同事角色</strong></p>
+<p>具体同事角色有自己operation，这个operation可以有两种：</p>
+<ul>
+<li><strong>第一种</strong>是同事本身的行为，比如改变对象本身的状态，处理自己的行为等，这种方法叫做自发行为（Self-Method),与其他的同事类或中介者没有任何的依赖</li>
+<li><strong>第二种</strong>是必须依赖中介者才能完成的行为，叫做依赖方法（Dep-Method</li>
+</ul>
+<p>调停者模式可以去除个个协同者之间的依赖链，扩展以及替换都会更加灵活。分布式事务的DTP模型也是基于此被定义：</p>
+</li>
+</ul>
+<h2 id="DTP模型"><a href="#DTP模型" class="headerlink" title="DTP模型"></a>DTP模型</h2><p>​    X/Open DTP(X/Open Distributed Transaction Processing Reference Model) 是X/Open 这个组织定义的一套分布式事务的标准，也就是了定义了规范和API接口，由厂商进行具体的实现。</p>
+<p>![image-20211127162937537](/Users/alsc/Library/Application Support/typora-user-images/image-20211127162937537.png)</p>
+<p>​    X/Open DTP 定义了三个组件： AP，TM，RM</p>
+<ul>
+<li><p>AP(Application Program)：也就是应用程序，可以理解为使用DTP的程序</p>
+</li>
+<li><p>RM(Resource Manager)：资源管理器，这里可以理解为一个DBMS系统，或者消息服务器管理系统，应用程序通过资源管理器对资源进行控制。资源必须实现XA定义的接口</p>
+</li>
+<li><p>TM(Transaction Manager)：事务管理器，负责协调和管理事务，提供给AP应用程序编程接口（TX协议）以及管理资源管理器</p>
+<p>其中，AP 可以和TM 以及 RM 通信，TM 和 RM 互相之间可以通信，DTP模型里面定义了XA接口，TM 和 RM 通过XA接口进行双向通信，例如:TM通知RM提交事务或者回滚事务，RM把提交结果通知给TM。AP和RM之间则通过RM提供的Native API 进行资源控制，这个没有进行约API和规范，各个厂商自己实现自己的资源控制，比如Oracle自己的数据库驱动程序。</p>
+</li>
+<li><p>TX协议：AP对不同TM的通用协议</p>
+</li>
+<li><p>XA 是X/Open DTP定义的资源管理器和事务管理器之间的接口规范，TM用它来通知和协调相关RM事务的开始、结束、提交或回滚。目前Oracle、Mysql、DB2都提供了对XA的支持。XA接口是双向的系统接口，在事务管理器(TM）以及多个资源管理器之间形成通信的桥梁（XA不能自动提交）</p>
+</li>
+</ul>
+<p>![image-20211127164436819](/Users/alsc/Library/Application Support/typora-user-images/image-20211127164436819.png)</p>
+<p>​        下面基于DTP模型，讨论2PC。</p>
+<h2 id="2PC—二阶段提交"><a href="#2PC—二阶段提交" class="headerlink" title="2PC—二阶段提交"></a>2PC—二阶段提交</h2><p>​    在XA协议的规范下，要求RM需提供prepare、commit、rollback能力，诞生第一个分布式事务解决方案——二阶段提交。</p>
+<ul>
+<li>第一阶段（使用XA协议的prepare）：<ul>
+<li>TM询问所有RM是否同意提交，如果第一阶段所有RM同意提交，则进入第二阶段；否则放弃整体事务过程</li>
+</ul>
+</li>
+<li>第二阶段（使用XA协议的commit/rollback）：<ul>
+<li>TM通知所有RM进行提交，如RM提交错误则反馈TM，TM通知所有RM进行rollback</li>
+</ul>
+</li>
+</ul>
+<p>![image-20211127165151237](/Users/alsc/Library/Application Support/typora-user-images/image-20211127165151237.png)</p>
+<p>​    2PC的ACID、CAP分析：</p>
+<ul>
+<li>A：</li>
+</ul>
+<h2 id="分布式场景下的CAP定理"><a href="#分布式场景下的CAP定理" class="headerlink" title="分布式场景下的CAP定理"></a>分布式场景下的CAP定理</h2><p>![image-20211127122359135](/Users/alsc/Library/Application Support/typora-user-images/image-20211127122359135.png)</p>
+<p>​    </p>
+<p><strong>分布式场景下CAP最多只能满足其二</strong>，前人已证明。</p>
+<p>​    而在多数分布式场景下， P是是必不可少的，所以在CA中的权衡就成了关键。而在面向用户的应用中，用户的体验感也即系统响应时间至关重要，所以我们很难抛弃掉A，但一致性就无法保证。因此，弱化一致性的概念，定义一种新的衡量CA的维度，就有了BASE标准：</p>
+<ul>
+<li><strong>基本可用（Basically Available）</strong></li>
+<li><strong>软状态（ Soft State）</strong></li>
+<li><strong>最终一致性（ Eventual Consistency）</strong></li>
+</ul>
+<p>下图客官多多体会(此文不谈)：</p>
+<p>![image-20211127123322241](/Users/alsc/Library/Application Support/typora-user-images/image-20211127123322241.png)</p>
+
       
     </div>
     <footer class="article-footer">
