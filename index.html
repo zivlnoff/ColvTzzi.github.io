@@ -115,7 +115,7 @@
 </li>
 </ul>
 <h2 id="DTP模型"><a href="#DTP模型" class="headerlink" title="DTP模型"></a>DTP模型</h2><p>​    X/Open DTP(X/Open Distributed Transaction Processing Reference Model) 是X/Open 这个组织定义的一套分布式事务的标准，也就是了定义了规范和API接口，由厂商进行具体的实现。</p>
-<p>![image-20211127162937537](/Users/alsc/Library/Application Support/typora-user-images/image-20211127162937537.png)</p>
+<p><img src="graph/image-20211127162937537.png"></p>
 <p>​    X/Open DTP 定义了三个组件： AP，TM，RM</p>
 <ul>
 <li><p>AP(Application Program)：也就是应用程序，可以理解为使用DTP的程序</p>
@@ -130,7 +130,7 @@
 <li><p>XA 是X/Open DTP定义的资源管理器和事务管理器之间的接口规范，TM用它来通知和协调相关RM事务的开始、结束、提交或回滚。目前Oracle、Mysql、DB2都提供了对XA的支持。XA接口是双向的系统接口，在事务管理器(TM）以及多个资源管理器之间形成通信的桥梁（XA不能自动提交）</p>
 </li>
 </ul>
-<p>![image-20211127164436819](/Users/alsc/Library/Application Support/typora-user-images/image-20211127164436819.png)</p>
+<p><img src="graph/image-20211127164436819.png"></p>
 <p>​        下面基于DTP模型，讨论2PC。</p>
 <h2 id="2PC—二阶段提交"><a href="#2PC—二阶段提交" class="headerlink" title="2PC—二阶段提交"></a>2PC—二阶段提交</h2><p>​    在XA协议的规范下，要求RM需提供prepare、commit、rollback能力，诞生第一个分布式事务解决方案——二阶段提交。</p>
 <ul>
@@ -143,12 +143,40 @@
 </ul>
 </li>
 </ul>
-<p>![image-20211127165151237](/Users/alsc/Library/Application Support/typora-user-images/image-20211127165151237.png)</p>
+<p><img src="graph/image-20211127165151237.png"></p>
 <p>​    2PC的ACID、CAP分析：</p>
 <ul>
-<li>A：</li>
+<li>A：原子性由RM自身提供的原子性保证，对于一般的关系数据库好说，但对于NoSql、RPC之类的就不太现实。</li>
+<li>I：隔离性由对收到agree之后的第二阶段对资源的全局锁定来保证，但对性能有影响。</li>
+<li>D：持久性由RM自身提供的持久性保证。</li>
+<li>A：因为必须收到所有voter的投票，才能执行进行最终的commit/abort，就会出现RM中部分失效时，必须等到所有RM恢复才可以往前推，所以选择了强一致性，丢弃了可用性。（<strong>单点故障</strong>）<ul>
+<li>而在第二阶段的执行中，如果有一个RM没法正常进行，整个资源就会无法释放（<strong>同步阻塞</strong>）。</li>
 </ul>
-<h2 id="分布式场景下的CAP定理"><a href="#分布式场景下的CAP定理" class="headerlink" title="分布式场景下的CAP定理"></a>分布式场景下的CAP定理</h2><p>![image-20211127122359135](/Users/alsc/Library/Application Support/typora-user-images/image-20211127122359135.png)</p>
+</li>
+<li>P：必须要满足，难不成RM只有一个部署？</li>
+</ul>
+<p>​    2PC真的满足了强一致性吗？</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="分布式场景下的CAP定理"><a href="#分布式场景下的CAP定理" class="headerlink" title="分布式场景下的CAP定理"></a>分布式场景下的CAP定理</h2><p><img src="graph/image-20211127122359135.png"></p>
 <p>​    </p>
 <p><strong>分布式场景下CAP最多只能满足其二</strong>，前人已证明。</p>
 <p>​    而在多数分布式场景下， P是是必不可少的，所以在CA中的权衡就成了关键。而在面向用户的应用中，用户的体验感也即系统响应时间至关重要，所以我们很难抛弃掉A，但一致性就无法保证。因此，弱化一致性的概念，定义一种新的衡量CA的维度，就有了BASE标准：</p>
@@ -158,7 +186,7 @@
 <li><strong>最终一致性（ Eventual Consistency）</strong></li>
 </ul>
 <p>下图客官多多体会(此文不谈)：</p>
-<p>![image-20211127123322241](/Users/alsc/Library/Application Support/typora-user-images/image-20211127123322241.png)</p>
+<p><img src="graph/image-20211127123322241.png"></p>
 
       
     </div>
