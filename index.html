@@ -93,11 +93,11 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>​    客官请移步到这 <a target="_blank" rel="noopener" href="https://zivlnoff.github.io/">事务</a></p>
+        <h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><p>​    客官请移步到这 <a target="_blank" rel="noopener" href="https://zivlnoff.github.io/">数据库事务</a></p>
 <h1 id="分布式事务（使用场景？"><a href="#分布式事务（使用场景？" class="headerlink" title="分布式事务（使用场景？"></a>分布式事务（使用场景？</h1><p>​    随着互联网的飞速发展，单节点瓶颈、无容灾、负载能力低、难以维护、无法灵活扩展的单体架构在规模庞大的工程里已无力回天，当然这也促成了分布式计算、分布式存储、分布式服务登上大荧幕。而在企业中，最令人头疼的就是怎么让分布式存储不出错性能又好，那就需要对分布式事务有极其敏锐的认识。</p>
-<p>​    在分布式场景下除了保证事务的ACID性质，还需要尽可能的满足CAP，即C(一致性)、A(可用性)、P(分区容忍性)的要求，一般情况下，我们简单的实现会是这样：有一个调停者(Mediator)去管理多个协同者（Colleague），已达到一致性的要求。调停者类似老师接收到学校的通知，下达到每一个同学，保证学生都能接收到学校的通知。</p>
+<p>​    在分布式场景下除了保证事务的ACID性质，还需要尽可能的满足CAP，即C(一致性)、A(可用性)、P(分区容忍性)的要求，一般情况下，我们简单的实现会是这样：有一个调停者(Mediator)去管理多个协同者（Colleague），以达到一致性的要求。调停者类似老师接收到学校的通知，下达到每一个同学，保证学生都能接收到学校的通知。</p>
 <p>​    基于此出现了调停者模式:</p>
-<p><img src="graph/image-20211127154524244.png" alt="image-20211127154524244"></p>
+<p><img src="graph/image-20211127154524244.png"></p>
 <ul>
 <li><p><strong>Mediator抽象中介者角色</strong><br> 抽象中介者角色定义统一的接口，用于各同事角色之间的通信。</p>
 </li>
@@ -159,26 +159,42 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>情况</th>
+<th>分析</th>
 </tr>
 </thead>
 <tbody><tr>
-<td></td>
-<td></td>
+<td>第一阶段发送vote之后coordinator挂了，参与者没挂</td>
+<td>1. 参与者均agree，在coordinator恢复或重新选举新的coordinator后，重新commit，不会出现不一致。2. 参与者存在至少一个disagree，在coordinator恢复后，会收到disagree，前推abort，不会出现不一致；或者在重新选举后，检查到有disagree回答的存在，前推abort，不会出现不一致。</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>第一阶段发送vote之后，coordinator没挂，参与者挂了</td>
+<td>1. 参与者无法恢复，相当于少了一个参与者，不会出现不一致。2. 参与者恢复，按原规则前推，不会出现不一致。</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td>第二阶段发送commit或abort之后，coordinator挂了，参与者没挂</td>
+<td>只要发送了commit或者abort，如果coordinator没法恢复，重新选举后，不会出现不一致；如果恢复了，正常前推。</td>
+</tr>
+<tr>
+<td>第二阶段发送commit或abort之后，coordinator没挂，参与者挂了</td>
+<td>1. 参与者无法恢复，相当于少了一个参与者，不会出现不一致。2. 参与者可恢复，恢复前一直阻塞，恢复后按原规则commit或abort，不会出现不一致。</td>
+</tr>
+<tr>
+<td><strong>第二阶段发送comimt或abort之后，coordinator挂了，唯一接收到coordinator消息的参与者也挂了</strong></td>
+<td><strong>这种情况下，如果要让剩下的参与者负起原来的责任，就必须按照上一个coordinator进行的操作继续下去，但我们无法知道上一个coordinator执行的是commit还是abort，也就不知道那个收到消息后挂了的参与者commit还是abort了。因此，无论我们对剩下的参与者执行commit或者abort，如果挂了的参与者恢复了，就可能造成这段时间的数据不一致！</strong></td>
 </tr>
 </tbody></table>
+<p>​    极端情况图示：</p>
+<p><img src="graph/image-20211128154749943.png">    </p>
+<h2 id="3PC—三阶段提交"><a href="#3PC—三阶段提交" class="headerlink" title="3PC—三阶段提交"></a>3PC—三阶段提交</h2><p>​    为了解决二阶段提交出现的极端情况导致的数据不一致，出现了3PC的解决方案。通过加入precomit阶段与超时机制来解决二阶段中的极端情况，如果在第二阶段结束coordinator发送commit或者abort之后和收到的参与者一起挂了，重新选举后可以通过precommit阶段的决策来判断是comit还是abort，因为一旦进入第二阶段，推进的决策已经产生并且一致(只能说大概率是这样)。</p>
+<p><img src="graph/image-20211128160503866.png" alt="image-20211128160503866"></p>
+<p>​    但由于网络分区的存在，如果第二阶段coordinator发送了commit，voter2回答abort，voter3由于网络分区的缘故，超时自动commit，则只有voter1和voter2进行了abort，而voter3进行了commit，就产生了数据不一致的情况！</p>
+<h3 id="通过聚会去理解2PC和3PC"><a href="#通过聚会去理解2PC和3PC" class="headerlink" title="通过聚会去理解2PC和3PC:"></a>通过聚会去理解2PC和3PC:</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">计划举办整个聚会的人——主办人</span><br><span class="line">计划邀请来参加聚会的人——参与人</span><br><span class="line"><span class="number">2</span>PC场景：</span><br><span class="line">主办人询问每一个参与人来不来参加聚会，如果都答应了，主办人就会通知每个人什么时候来，可能有人晚到，但一定会到！但如果有人没答应，而且聚会取消的消息只通知到了部分参与者（其中包括没答应的人），而且这些参与者和主办人都联系不到，那剩下同意来的参与者就不知道到底来不来了！来了，有人可以通知到了但是来不了，不一致！（数据不一致）</span><br><span class="line"><span class="number">3</span>PC场景：</span><br><span class="line">主办人询问每一个参与人来不来参加聚会，如果都答应了，传递给所有参与人聚会一定会进行的消息（如果在这之前有人不来，大家都会等待，不会做出任何决定，就不会不一致）。但是如果有人突然来不了了，而且另外的人主办方之后没来的及通知临时取消(网络分区)，就依旧会出现有人来有人没来的情况（数据不一致）。但是通过第一阶段的恢复有理由相信大概率大家会来，因为机器不像人那么容易反悔！</span><br></pre></td></tr></table></figure>
+
+<h3 id="3PC-gt-2PC"><a href="#3PC-gt-2PC" class="headerlink" title="3PC&gt;2PC?"></a>3PC&gt;2PC?</h3><p>相对于2PC，3PC主要解决了协调者宕机之后事务阻塞的问题，因为一旦参与者无法及时收到来自协调者的信息之后，他会默认执行commit。而不会一直持有事务资源并处于阻塞状态。但是这种机制也会导致数据一致性问题，因为，由于网络原因，协调者发送的abort响应没有及时被参与者接收到，那么参与者在等待超时之后执行了commit操作。这样就和其他接到abort命令并执行回滚的参与者之间存在数据不一致的情况。</p>
+<p>我们可以看到，在分布式场景下，数据一致性是一个令人头疼的问题，有了网络分区（P），丢弃A保证不了C(二阶段提交)，有了A保证不了C(三阶段提交)，能否同时保证CAP吗，已经有人给出了答案。</p>
 <h2 id="分布式场景下的CAP定理"><a href="#分布式场景下的CAP定理" class="headerlink" title="分布式场景下的CAP定理"></a>分布式场景下的CAP定理</h2><p><img src="graph/image-20211127122359135.png"></p>
-<p>​    </p>
-<p><strong>分布式场景下CAP最多只能满足其二</strong>，前人已证明。</p>
+<p>​    <strong>分布式场景下CAP最多只能满足其二</strong></p>
 <p>​    而在多数分布式场景下， P是是必不可少的，所以在CA中的权衡就成了关键。而在面向用户的应用中，用户的体验感也即系统响应时间至关重要，所以我们很难抛弃掉A，但一致性就无法保证。因此，弱化一致性的概念，定义一种新的衡量CA的维度，就有了BASE标准：</p>
 <ul>
 <li><strong>基本可用（Basically Available）</strong></li>
@@ -187,6 +203,8 @@
 </ul>
 <p>下图客官多多体会(此文不谈)：</p>
 <p><img src="graph/image-20211127123322241.png"></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>​    Raft算法 <a target="_blank" rel="noopener" href="https://zivlnoff.github.io/">Raft的理念就是放大直觉效益</a></p>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><p><a target="_blank" rel="noopener" href="https://ata.alibaba-inc.com/articles/166757?spm=ata.25287382.0.0.25781e39DnAeog">https://ata.alibaba-inc.com/articles/166757?spm=ata.25287382.0.0.25781e39DnAeog</a></p>
 
       
     </div>
