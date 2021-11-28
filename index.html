@@ -142,7 +142,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <h1 id="为什么要学习Raft"><a href="#为什么要学习Raft" class="headerlink" title="为什么要学习Raft"></a>为什么要学习Raft</h1><p>​    起初，就是好奇分布式关系数据库怎么去实现一致性的，觉得这是一件复杂的事，吃饭跑步也会想，去看了下paxos，但因事耽误了。后面看了《Redis设计与实现》，其中Election就提到了Raft算法，然后才去了解Raft。学习本身就是DFS的过程。至于为什么学Raft，我想有以下几点：</p>
+<ol>
+<li>更深的去理解一致性的概念。</li>
+<li>将维度或者说是视角从单体到分布式，遇到的问题需要直视。</li>
+<li>Raft有很多值得学习的看问题的角度，如哲学角度。</li>
+</ol>
+<p>只有热爱，知识才能发挥超越本身的价值。</p>
+<h1 id="Raft—Wiki"><a href="#Raft—Wiki" class="headerlink" title="Raft—Wiki"></a>Raft—Wiki</h1><p>​    <strong>Raft</strong> is a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus</a> algorithm designed as an alternative to the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Paxos</a> family of algorithms. It was meant to be more understandable than Paxos by means of separation of logic, but it is also formally proven safe and offers some additional features.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-paper-1">1]</a> Raft offers a generic way to distribute a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Finite-state_machine">state machine</a> across a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Computer_cluster">cluster</a> of computing systems, ensuring that each node in the cluster agrees upon the same series of state transitions. It has a number of open-source reference implementations, with full-specification implementations in <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Go_(programming_language)">Go</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>, and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Scala_(programming_language)">Scala</a>.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-website-2">2]</a> It is named after Reliable, Replicated, Redundant, And Fault-Tolerant.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-3">3]</a></p>
+<p>Raft is not a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Byzantine_fault">Byzantine fault</a> tolerant algorithm: the nodes trust the elected leader.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-paper-1">1]</a></p>
+<p>​    Raft是一种共识（一致性）算法，设计用于替代Paxos算法家族。通过逻辑分离的方式，它被认为比Paxos更容易理解，但它也被正式证明是安全的，并提供了一些额外的features。Raft提供了一种在计算系统集群中分发状态机的通用方法，确保集群中的每个节点都满足相同的状态转换系列。Raft不是拜占庭容错算法。</p>
+<h1 id="Raft为什么更加容易理解"><a href="#Raft为什么更加容易理解" class="headerlink" title="Raft为什么更加容易理解"></a>Raft为什么更加容易理解</h1>
       
     </div>
     <footer class="article-footer">
