@@ -209,8 +209,10 @@
 </li>
 </ul>
 <p>​     Leader通过HeartBeat（不带log entry的AppendEntries RPC）来维护自己的地位。当收到client消息的时候，更新自身log[]，通过并行发送AppendEntries RPC同步log。</p>
-<h1 id="Log-Replication"><a href="#Log-Replication" class="headerlink" title="Log Replication"></a>Log Replication</h1><p>​    </p>
-<h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
+<h1 id="Log-Replication"><a href="#Log-Replication" class="headerlink" title="Log Replication"></a>Log Replication</h1><h2 id="正常case"><a href="#正常case" class="headerlink" title="正常case"></a>正常case</h2><p>​    选举成功后，开始服务客户端请求。Leader接收请求，将command写入log[]，并行发送AppendEntries RPC给其他Servers，一旦收到大多数Success（这时该log entry就处于commited态），Leader设置新的commitIndex，apply到自身状态机，向client返回请求结果，随后的AppendEntries会告诉Follower安全的commit信息，同时apply到状态机。一种可能的服务器日志：</p>
+<p><img src="graph/image-20211202171334445.png"></p>
+<p>​    此状态明确了一个概念：在大多数Server写入同一个log entry时，该log entry在上帝视角就是commited态。</p>
+<h2 id="极端case"><a href="#极端case" class="headerlink" title="极端case"></a>极端case</h2><h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h1 id="还在襁褓中的问题"><a href="#还在襁褓中的问题" class="headerlink" title="还在襁褓中的问题"></a>还在襁褓中的问题</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
       
     </div>
     <footer class="article-footer">
