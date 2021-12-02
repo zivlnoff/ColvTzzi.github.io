@@ -163,8 +163,53 @@
 <h1 id="Raft请求应答TimeLine"><a href="#Raft请求应答TimeLine" class="headerlink" title="Raft请求应答TimeLine"></a>Raft请求应答TimeLine</h1><p><img src="graph/image-20211202142531637.png"></p>
 <p>​    Raft通过选举Leader，使其全权负责Client请求、管理Replicated log、决定何时满足安全的将log entries应用到状态机，来保证高可用性和最终一致性。</p>
 <h1 id="Raft如何防止知识溢出"><a href="#Raft如何防止知识溢出" class="headerlink" title="Raft如何防止知识溢出"></a>Raft如何防止知识溢出</h1><p>​    Raft将一致性问题分解成3个各自独立的子问题：1. Election。 2. Log Replication。3. Safety。</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Election"><a href="#Election" class="headerlink" title="Election"></a>Election</h1><h2 id="初态"><a href="#初态" class="headerlink" title="初态"></a>初态</h2><p><img src="/Users/alsc/blog/public/graph/image-20211202150819811.png" alt="image-20211202150819811"></p>
-<p>​    </p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Election"><a href="#Election" class="headerlink" title="Election"></a>Election</h1><h2 id="初态"><a href="#初态" class="headerlink" title="初态"></a>初态</h2><p><img src="graph/image-20211202150819811.png"></p>
+<ul>
+<li><p>term：任期，单调递增。</p>
+</li>
+<li><p>Follower：从副本。</p>
+</li>
+<li><p>Election Timeout：选举超时时间。</p>
+</li>
+</ul>
+<p>​        各服务器启动后，将自身状态设置为Follower，term = 0，设置Election Timeout（150ms — 300ms），Timeout时间最小的Follower会将term自增，并将自身状态置为Candidate，开始自荐。</p>
+<h2 id="候选人自荐"><a href="#候选人自荐" class="headerlink" title="候选人自荐"></a>候选人自荐</h2><p><img src="graph/image-20211202152755353.png"></p>
+<ul>
+<li>Candidate：候选人。</li>
+<li>Request RPC：候选人自荐RPC调用。</li>
+<li>votedFor：当前任期的票投给了谁。（一个term，只能投给一个人）</li>
+</ul>
+<p>​    自身votedFor投给自己，发送Request RPC调用，Follower收到Request RPC调用，，做以下检查：</p>
+<ul>
+<li><p>Candadate term &gt;= 自身term</p>
+</li>
+<li><p>自身votedFor为null</p>
+</li>
+<li><p>Candidate的log至少和自身一样新。</p>
+</li>
+</ul>
+<p>​    满足则将term更新并将票投出。当Candidate收到大多数（包括自身）票数，自荐成功，修改自身状态为Leader。</p>
+<h2 id="做主"><a href="#做主" class="headerlink" title="做主"></a>做主</h2><p><img src="graph/image-20211202160638970.png"></p>
+<ul>
+<li><p>Leader：主。</p>
+</li>
+<li><p>AppendEntries RPC：</p>
+<ul>
+<li>如果没有需要replication的log，作为heartBeat延续Leader任期以防止不必要的新一轮选举。</li>
+<li>如果有新的log entries，则同步复制。</li>
+</ul>
+</li>
+<li><p>command：状态机的执行命令。</p>
+</li>
+<li><p>log[]：log entries；每个entry保存了状态机的command以及Leader自身term或者非Leader收到该命令时AppendEntries RPC的任期。</p>
+</li>
+<li><p>commitIndex：可以安全应用到状态机的highest index。一个log entry视为commited态只要它replicated到majority Servers。</p>
+</li>
+<li><p>lastApplied：已应用到状态机的highest log index。</p>
+</li>
+</ul>
+<p>​     Leader通过HeartBeat（不带log entry的AppendEntries RPC）来维护自己的地位。当收到client消息的时候，更新自身log[]，通过并行发送AppendEntries RPC同步log。</p>
+<h1 id="Log-Replication"><a href="#Log-Replication" class="headerlink" title="Log Replication"></a>Log Replication</h1><p>​    </p>
 <h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
       
     </div>
