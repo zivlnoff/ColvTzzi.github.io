@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>千万不要删重要的人</title>
+  <title>有种🌹少年是MayDay</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="og:type" content="website">
-<meta property="og:title" content="千万不要删重要的人">
+<meta property="og:title" content="有种🌹少年是MayDay">
 <meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="千万不要删重要的人">
+<meta property="og:site_name" content="有种🌹少年是MayDay">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="ColvTzzi">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="千万不要删重要的人" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="有种🌹少年是MayDay" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/favicon.png">
@@ -42,7 +42,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">千万不要删重要的人</a>
+        <a href="/" id="logo">有种🌹少年是MayDay</a>
       </h1>
       
     </div>
@@ -152,7 +152,20 @@
 <h1 id="Raft—Wiki"><a href="#Raft—Wiki" class="headerlink" title="Raft—Wiki"></a>Raft—Wiki</h1><p>​    <strong>Raft</strong> is a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus</a> algorithm designed as an alternative to the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Paxos</a> family of algorithms. It was meant to be more understandable than Paxos by means of separation of logic, but it is also formally proven safe and offers some additional features.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-paper-1">1]</a> Raft offers a generic way to distribute a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Finite-state_machine">state machine</a> across a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Computer_cluster">cluster</a> of computing systems, ensuring that each node in the cluster agrees upon the same series of state transitions. It has a number of open-source reference implementations, with full-specification implementations in <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Go_(programming_language)">Go</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>, and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Scala_(programming_language)">Scala</a>.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-website-2">2]</a> It is named after Reliable, Replicated, Redundant, And Fault-Tolerant.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-3">3]</a></p>
 <p>Raft is not a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Byzantine_fault">Byzantine fault</a> tolerant algorithm: the nodes trust the elected leader.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-paper-1">1]</a></p>
 <p>​    Raft是一种共识（一致性）算法，设计用于替代Paxos算法家族。通过逻辑分离的方式，它被认为比Paxos更容易理解，但它也被正式证明是安全的，并提供了一些额外的features。Raft提供了一种在计算系统集群中分发状态机的通用方法，确保集群中的每个节点都满足相同的状态转换系列。Raft不是拜占庭容错算法。</p>
-<h1 id="Raft为什么更加容易理解"><a href="#Raft为什么更加容易理解" class="headerlink" title="Raft为什么更加容易理解"></a>Raft为什么更加容易理解</h1>
+<h1 id="传统请求应答"><a href="#传统请求应答" class="headerlink" title="传统请求应答"></a>传统请求应答</h1><h2 id="主从同步复制"><a href="#主从同步复制" class="headerlink" title="主从同步复制"></a>主从同步复制</h2><p><img src="graph/image-20211202144006663.png"></p>
+<p>​    客户端发送写请求，只有当主副本的数据成功同步到所有的从副本，才向客户端返回请求成功，可用性差，强一致性。</p>
+<h2 id="主从异步复制"><a href="#主从异步复制" class="headerlink" title="主从异步复制"></a>主从异步复制</h2><p><img src="graph/image-20211202144102607.png"></p>
+<p>​    客户端发送写请求，主副本成功即可返回请求成功，后台另起线程异步将数据同步到从副本，可用性好。一致性分析：</p>
+<ul>
+<li>如果主副本无故障，最终一致性</li>
+<li>如果主副本在返回请求成功之后宕机，数据不一致，</li>
+</ul>
+<h1 id="Raft请求应答TimeLine"><a href="#Raft请求应答TimeLine" class="headerlink" title="Raft请求应答TimeLine"></a>Raft请求应答TimeLine</h1><p><img src="graph/image-20211202142531637.png"></p>
+<p>​    Raft通过选举Leader，使其全权负责Client请求、管理Replicated log、决定何时满足安全的将log entries应用到状态机，来保证高可用性和最终一致性。</p>
+<h1 id="Raft如何防止知识溢出"><a href="#Raft如何防止知识溢出" class="headerlink" title="Raft如何防止知识溢出"></a>Raft如何防止知识溢出</h1><p>​    Raft将一致性问题分解成3个各自独立的子问题：1. Election。 2. Log Replication。3. Safety。</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Election"><a href="#Election" class="headerlink" title="Election"></a>Election</h1><h2 id="初态"><a href="#初态" class="headerlink" title="初态"></a>初态</h2><p><img src="/Users/alsc/blog/public/graph/image-20211202150819811.png" alt="image-20211202150819811"></p>
+<p>​    </p>
+<h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3>
       
     </div>
     <footer class="article-footer">
