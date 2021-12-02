@@ -203,7 +203,7 @@
 </li>
 <li><p>log[]：log entries；每个entry保存了状态机的command以及Leader自身term或者非Leader收到该命令时AppendEntries RPC的任期。</p>
 </li>
-<li><p>commitIndex：可以安全应用到状态机的highest index。一个log entry视为commited态只要它replicated到majority Servers。</p>
+<li><p>commitIndex：可以安全应用到状态机的highest index。log entries被视为commited态只要当前Leader的最新entry成功replicated到majority Servers。（下文细讲）</p>
 </li>
 <li><p>lastApplied：已应用到状态机的highest log index。</p>
 </li>
@@ -220,8 +220,11 @@
 <p><img src="graph/image-20211202173159955.png"></p>
 <p>​    当term=8时，Leader处于最上层状态时，a-f是可能出现的follower场景。一种可能的TimeLine：</p>
 <p><img src="graph/1638439372443.gif"></p>
-<p>​    </p>
-<h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h1 id="还在襁褓中的问题"><a href="#还在襁褓中的问题" class="headerlink" title="还在襁褓中的问题"></a>还在襁褓中的问题</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>参考文献：</p>
+<h1 id="深入Committed"><a href="#深入Committed" class="headerlink" title="深入Committed"></a>深入Committed</h1><p>​    假设当Entry存在于Majority服务器即可被commit，会出现下图所示情况，导致状态机执行序列不一致。</p>
+<p><img src="graph/image-20211202193330353.png"></p>
+<p>​    当服务器达到（c）状态时，Leader为S1，接收到新的请求后通过AppendEntries RPC将index=2处的log entry同步复制到S3，此时index=2处的Entry已经存在于3个服务器&gt;5/2，如果此时commit并apply到状态机，且S1宕机，S5恢复后因为其log比S2、S3、S4新，所以可以选举成功且将Entries同步到其他服务器，这个时候只有S1、S2、S3执行了entry2的命令，且之后被overwrite，产生了数据不一致。</p>
+<h2 id="Committing-entries-from-previous-terms"><a href="#Committing-entries-from-previous-terms" class="headerlink" title="Committing entries from previous terms"></a>Committing entries from previous terms</h2><p>​    为了解决上面的情况，Raft不会通过计算replicas去commit任何之前的terms对应的日志。只有当log entries term等于当前Leader的term时才通过计算replicas来判断commit。只要新的entry被commit，旧log都会被间接提交。    </p>
+<h1 id="集群成员改变"><a href="#集群成员改变" class="headerlink" title="集群成员改变"></a>集群成员改变</h1><h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h1 id="还在襁褓中的问题"><a href="#还在襁褓中的问题" class="headerlink" title="还在襁褓中的问题"></a>还在襁褓中的问题</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>参考文献：</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://web.stanford.edu/~ouster/cgi-bin/papers/raft-atc14">In Serach of an Understandable Consensus Algorithm</a></li>
 </ol>
