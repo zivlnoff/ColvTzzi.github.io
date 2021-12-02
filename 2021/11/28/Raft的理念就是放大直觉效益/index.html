@@ -23,8 +23,10 @@
 <meta property="og:image" content="http://example.com/2021/11/28/Raft%E7%9A%84%E7%90%86%E5%BF%B5%E5%B0%B1%E6%98%AF%E6%94%BE%E5%A4%A7%E7%9B%B4%E8%A7%89%E6%95%88%E7%9B%8A/graph/image-20211202173159955.png">
 <meta property="og:image" content="http://example.com/2021/11/28/Raft%E7%9A%84%E7%90%86%E5%BF%B5%E5%B0%B1%E6%98%AF%E6%94%BE%E5%A4%A7%E7%9B%B4%E8%A7%89%E6%95%88%E7%9B%8A/graph/1638439372443.gif">
 <meta property="og:image" content="http://example.com/2021/11/28/Raft%E7%9A%84%E7%90%86%E5%BF%B5%E5%B0%B1%E6%98%AF%E6%94%BE%E5%A4%A7%E7%9B%B4%E8%A7%89%E6%95%88%E7%9B%8A/graph/image-20211202193330353.png">
+<meta property="og:image" content="http://example.com/2021/11/28/Raft%E7%9A%84%E7%90%86%E5%BF%B5%E5%B0%B1%E6%98%AF%E6%94%BE%E5%A4%A7%E7%9B%B4%E8%A7%89%E6%95%88%E7%9B%8A/graph/image-20211202202913057.png">
+<meta property="og:image" content="http://example.com/2021/11/28/Raft%E7%9A%84%E7%90%86%E5%BF%B5%E5%B0%B1%E6%98%AF%E6%94%BE%E5%A4%A7%E7%9B%B4%E8%A7%89%E6%95%88%E7%9B%8A/graph/image-20211202204306533.png">
 <meta property="article:published_time" content="2021-11-28T10:35:01.000Z">
-<meta property="article:modified_time" content="2021-12-02T12:14:31.148Z">
+<meta property="article:modified_time" content="2021-12-02T12:44:19.076Z">
 <meta property="article:author" content="ColvTzzi">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/2021/11/28/Raft%E7%9A%84%E7%90%86%E5%BF%B5%E5%B0%B1%E6%98%AF%E6%94%BE%E5%A4%A7%E7%9B%B4%E8%A7%89%E6%95%88%E7%9B%8A/graph/image-20211202144006663.png">
@@ -188,7 +190,12 @@
 <p><img src="graph/image-20211202193330353.png"></p>
 <p>​    当服务器达到（c）状态时，Leader为S1，接收到新的请求后通过AppendEntries RPC将index=2处的log entry同步复制到S3，此时index=2处的Entry已经存在于3个服务器&gt;5/2，如果此时commit并apply到状态机，且S1宕机，S5恢复后因为其log比S2、S3、S4新，所以可以选举成功且将Entries同步到其他服务器，这个时候只有S1、S2、S3执行了entry2的命令，且之后被overwrite，产生了数据不一致。</p>
 <h2 id="Committing-entries-from-previous-terms"><a href="#Committing-entries-from-previous-terms" class="headerlink" title="Committing entries from previous terms"></a>Committing entries from previous terms</h2><p>​    为了解决上面的情况，Raft不会通过计算replicas去commit任何之前的terms对应的日志。只有当log entries term等于当前Leader的term时才通过计算replicas来判断commit。只要新的entry被commit，旧log都会被间接提交。    </p>
-<h1 id="集群成员改变"><a href="#集群成员改变" class="headerlink" title="集群成员改变"></a>集群成员改变</h1><h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h1 id="还在襁褓中的问题"><a href="#还在襁褓中的问题" class="headerlink" title="还在襁褓中的问题"></a>还在襁褓中的问题</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>参考文献：</p>
+<h1 id="集群成员改变"><a href="#集群成员改变" class="headerlink" title="集群成员改变"></a>集群成员改变</h1><p>​    到目前为止，我们所讨论的Cluster中的服务器个数是固定的。在实际工程中，如果我们在需要变更服务器台数的时候，重启重新配置的话，会有一段时间集群处于不可用状态，为了能够动态的增加、减少、置换机器，Raft采用了two-phase方案。如果不增加extra算法直接转换可能出现的case：</p>
+<p><img src="graph/image-20211202202913057.png"></p>
+<p>​    直接从Cold转变为Cnew会导致同时出现两个Leader，因为对于Cold，2is majority，而对于Cnew，3is majority， 5可同时满足2和3的sum，所以两个Leader是完全有可能的！</p>
+<p>​    因此在Raft算法中，集群先转换为一种joint consensus态，一旦此状态commit，系统就会转变为新的配置。Join consensus结合了old和new两种配置，即Cold,new。</p>
+<p><img src="graph/image-20211202204306533.png"></p>
+<h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h1 id="还在襁褓中的问题"><a href="#还在襁褓中的问题" class="headerlink" title="还在襁褓中的问题"></a>还在襁褓中的问题</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>参考文献：</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://web.stanford.edu/~ouster/cgi-bin/papers/raft-atc14">In Serach of an Understandable Consensus Algorithm</a></li>
 </ol>
