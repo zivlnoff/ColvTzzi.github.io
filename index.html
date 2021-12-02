@@ -152,18 +152,18 @@
 <h1 id="Raft—Wiki"><a href="#Raft—Wiki" class="headerlink" title="Raft—Wiki"></a>Raft—Wiki</h1><p>​    <strong>Raft</strong> is a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Consensus_(computer_science)">consensus</a> algorithm designed as an alternative to the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Paxos</a> family of algorithms. It was meant to be more understandable than Paxos by means of separation of logic, but it is also formally proven safe and offers some additional features.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-paper-1">1]</a> Raft offers a generic way to distribute a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Finite-state_machine">state machine</a> across a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Computer_cluster">cluster</a> of computing systems, ensuring that each node in the cluster agrees upon the same series of state transitions. It has a number of open-source reference implementations, with full-specification implementations in <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Go_(programming_language)">Go</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/C%2B%2B">C++</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Java_(programming_language)">Java</a>, and <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Scala_(programming_language)">Scala</a>.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-website-2">2]</a> It is named after Reliable, Replicated, Redundant, And Fault-Tolerant.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-3">3]</a></p>
 <p>Raft is not a <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Byzantine_fault">Byzantine fault</a> tolerant algorithm: the nodes trust the elected leader.[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Raft_(algorithm)#cite_note-paper-1">1]</a></p>
 <p>​    Raft是一种共识（一致性）算法，设计用于替代Paxos算法家族。通过逻辑分离的方式，它被认为比Paxos更容易理解，但它也被正式证明是安全的，并提供了一些额外的features。Raft提供了一种在计算系统集群中分发状态机的通用方法，确保集群中的每个节点都满足相同的状态转换系列。Raft不是拜占庭容错算法。</p>
-<h1 id="传统请求应答"><a href="#传统请求应答" class="headerlink" title="传统请求应答"></a>传统请求应答</h1><h2 id="主从同步复制"><a href="#主从同步复制" class="headerlink" title="主从同步复制"></a>主从同步复制</h2><p><img src="graph/image-20211202144006663.png"></p>
+<h1 id="传统请求应答"><a href="#传统请求应答" class="headerlink" title="传统请求应答"></a>传统请求应答</h1><h2 id="主从同步复制"><a href="#主从同步复制" class="headerlink" title="主从同步复制"></a>主从同步复制</h2><p><img src="https://zivlnoff.github.io/graph/image-20211202144006663.png"></p>
 <p>​    客户端发送写请求，只有当主副本的数据成功同步到所有的从副本，才向客户端返回请求成功，可用性差，强一致性。</p>
-<h2 id="主从异步复制"><a href="#主从异步复制" class="headerlink" title="主从异步复制"></a>主从异步复制</h2><p><img src="graph/image-20211202144102607.png"></p>
+<h2 id="主从异步复制"><a href="#主从异步复制" class="headerlink" title="主从异步复制"></a>主从异步复制</h2><p><img src="https://zivlnoff.github.io/graph/image-20211202144102607.png"></p>
 <p>​    客户端发送写请求，主副本成功即可返回请求成功，后台另起线程异步将数据同步到从副本，可用性好。一致性分析：</p>
 <ul>
 <li>如果主副本无故障，最终一致性</li>
 <li>如果主副本在返回请求成功之后宕机，数据不一致，</li>
 </ul>
-<h1 id="Raft请求应答TimeLine"><a href="#Raft请求应答TimeLine" class="headerlink" title="Raft请求应答TimeLine"></a>Raft请求应答TimeLine</h1><p><img src="graph/image-20211202142531637.png"></p>
+<h1 id="Raft请求应答TimeLine"><a href="#Raft请求应答TimeLine" class="headerlink" title="Raft请求应答TimeLine"></a>Raft请求应答TimeLine</h1><p><img src="https://zivlnoff.github.io/graph/image-20211202142531637.png"></p>
 <p>​    Raft通过选举Leader，使其全权负责Client请求、管理Replicated log、决定何时满足安全的将log entries应用到状态机，来保证高可用性和最终一致性。</p>
 <h1 id="Raft如何防止知识溢出"><a href="#Raft如何防止知识溢出" class="headerlink" title="Raft如何防止知识溢出"></a>Raft如何防止知识溢出</h1><p>​    Raft将一致性问题分解成3个各自独立的子问题：1. Election。 2. Log Replication。3. Safety。</p>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Election"><a href="#Election" class="headerlink" title="Election"></a>Election</h1><h2 id="初态"><a href="#初态" class="headerlink" title="初态"></a>初态</h2><p><img src="graph/image-20211202150819811.png"></p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1><h1 id="Election"><a href="#Election" class="headerlink" title="Election"></a>Election</h1><h2 id="初态"><a href="#初态" class="headerlink" title="初态"></a>初态</h2><p><img src="https://zivlnoff.github.io/graph/image-20211202150819811.png"></p>
 <ul>
 <li><p>term：任期，单调递增。</p>
 </li>
@@ -173,7 +173,7 @@
 </li>
 </ul>
 <p>​        各服务器启动后，将自身状态设置为Follower，term = 0，设置Election Timeout（150ms — 300ms），Timeout时间最小的Follower会将term自增，并将自身状态置为Candidate，开始自荐。</p>
-<h2 id="候选人自荐"><a href="#候选人自荐" class="headerlink" title="候选人自荐"></a>候选人自荐</h2><p><img src="graph/image-20211202152755353.png"></p>
+<h2 id="候选人自荐"><a href="#候选人自荐" class="headerlink" title="候选人自荐"></a>候选人自荐</h2><p><img src="https://zivlnoff.github.io/graph/image-20211202152755353.png"></p>
 <ul>
 <li>Candidate：候选人。</li>
 <li>Request RPC：候选人自荐RPC调用。</li>
@@ -189,7 +189,7 @@
 </li>
 </ul>
 <p>​    满足则将term更新并将票投出。当Candidate收到大多数（包括自身）票数，自荐成功，修改自身状态为Leader。</p>
-<h2 id="做主"><a href="#做主" class="headerlink" title="做主"></a>做主</h2><p><img src="graph/image-20211202160638970.png"></p>
+<h2 id="做主"><a href="#做主" class="headerlink" title="做主"></a>做主</h2><p><img src="https://zivlnoff.github.io/graph/image-20211202160638970.png"></p>
 <ul>
 <li><p>Leader：主。</p>
 </li>
@@ -210,25 +210,25 @@
 </ul>
 <p>​     Leader通过HeartBeat（不带log entry的AppendEntries RPC）来维护自己的地位。当收到client消息的时候，更新自身log[]，通过并行发送AppendEntries RPC同步log。</p>
 <h1 id="Log-Replication"><a href="#Log-Replication" class="headerlink" title="Log Replication"></a>Log Replication</h1><p>​    选举成功后，开始服务客户端请求。Leader接收请求，将command写入log[]，并行发送AppendEntries RPC给其他Servers，一旦收到大多数Success（这时该log entry就处于commited态），Leader设置新的commitIndex，apply到自身状态机，向client返回请求结果，随后的AppendEntries会告诉Follower安全的commit信息，同时apply到状态机。</p>
-<h2 id="正常case"><a href="#正常case" class="headerlink" title="正常case"></a>正常case</h2><p><img src="graph/image-20211202171334445.png"></p>
+<h2 id="正常case"><a href="#正常case" class="headerlink" title="正常case"></a>正常case</h2><p><img src="https://zivlnoff.github.io/graph/image-20211202171334445.png"></p>
 <p>​    此状态明确了一个概念：在大多数Server写入同一个log entry时，该log entry在上帝视角就是commited态。</p>
 <h2 id="极端case"><a href="#极端case" class="headerlink" title="极端case"></a>极端case</h2><p>​    当发生Leader宕机，可能出现log不一致：</p>
 <ul>
 <li>Follower可能miss在Leader上存在的Entries</li>
 <li>Follower可能存在Leader上没有的entries。    </li>
 </ul>
-<p><img src="graph/image-20211202173159955.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211202173159955.png"></p>
 <p>​    当term=8时，Leader处于最上层状态时，a-f是可能出现的follower场景。一种可能的TimeLine：</p>
-<p><img src="graph/1638439372443.gif"></p>
+<p><img src="https://zivlnoff.github.io/graph/1638439372443.gif"></p>
 <h1 id="深入Committed"><a href="#深入Committed" class="headerlink" title="深入Committed"></a>深入Committed</h1><p>​    假设当Entry存在于Majority服务器即可被commit，会出现下图所示情况，导致状态机执行序列不一致。</p>
-<p><img src="graph/image-20211202193330353.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211202193330353.png"></p>
 <p>​    当服务器达到（c）状态时，Leader为S1，接收到新的请求后通过AppendEntries RPC将index=2处的log entry同步复制到S3，此时index=2处的Entry已经存在于3个服务器&gt;5/2，如果此时commit并apply到状态机，且S1宕机，S5恢复后因为其log比S2、S3、S4新，所以可以选举成功且将Entries同步到其他服务器，这个时候只有S1、S2、S3执行了entry2的命令，且之后被overwrite，产生了数据不一致。</p>
 <h2 id="Committing-entries-from-previous-terms"><a href="#Committing-entries-from-previous-terms" class="headerlink" title="Committing entries from previous terms"></a>Committing entries from previous terms</h2><p>​    为了解决上面的情况，Raft不会通过计算replicas去commit任何之前的terms对应的日志。只有当log entries term等于当前Leader的term时才通过计算replicas来判断commit。只要新的entry被commit，旧log都会被间接提交。    </p>
 <h1 id="集群成员改变"><a href="#集群成员改变" class="headerlink" title="集群成员改变"></a>集群成员改变</h1><p>​    到目前为止，我们所讨论的Cluster中的服务器个数是固定的。在实际工程中，如果我们在需要变更服务器台数的时候，重启重新配置的话，会有一段时间集群处于不可用状态，为了能够动态的增加、减少、置换机器，Raft采用了two-phase方案。如果不增加extra算法直接转换可能出现的case：</p>
-<p><img src="graph/image-20211202202913057.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211202202913057.png"></p>
 <p>​    直接从Cold转变为Cnew会导致同时出现两个Leader，因为对于Cold，2is majority，而对于Cnew，3is majority， 5可同时满足2和3的sum，所以两个Leader是完全有可能的！</p>
 <p>​    因此在Raft算法中，集群先转换为一种joint consensus态，一旦此状态commit，系统就会转变为新的配置。Join consensus结合了old和new两种配置，即Cold,new。</p>
-<p><img src="graph/image-20211202204306533.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211202204306533.png"></p>
 <h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h1 id="还在襁褓中的问题"><a href="#还在襁褓中的问题" class="headerlink" title="还在襁褓中的问题"></a>还在襁褓中的问题</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>参考文献：</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://web.stanford.edu/~ouster/cgi-bin/papers/raft-atc14">In Serach of an Understandable Consensus Algorithm</a></li>
