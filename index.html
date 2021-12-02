@@ -229,7 +229,7 @@
 <p>​    直接从Cold转变为Cnew会导致同时出现两个Leader，因为对于Cold，2is majority，而对于Cnew，3is majority， 5可同时满足2和3的sum，所以两个Leader是完全有可能的！</p>
 <p>​    因此在Raft算法中，集群先转换为一种joint consensus态，一旦此状态commit，系统就会转变为新的配置。Join consensus结合了old和new两种配置，即Cold,new。</p>
 <p><img src="https://zivlnoff.github.io/graph/image-20211202204306533.png"></p>
-<h1 id="探究相似点：区块链思想和零知识证明"><a href="#探究相似点：区块链思想和零知识证明" class="headerlink" title="探究相似点：区块链思想和零知识证明"></a>探究相似点：区块链思想和零知识证明</h1><h1 id="还在襁褓中的问题"><a href="#还在襁褓中的问题" class="headerlink" title="还在襁褓中的问题"></a>还在襁褓中的问题</h1><h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>参考文献：</p>
+<p>参考文献：</p>
 <ol>
 <li><a target="_blank" rel="noopener" href="https://web.stanford.edu/~ouster/cgi-bin/papers/raft-atc14">In Serach of an Understandable Consensus Algorithm</a></li>
 </ol>
