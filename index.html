@@ -71,6 +71,115 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-mac安装qemu：" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/03/mac%E5%AE%89%E8%A3%85qemu%EF%BC%9A/" class="article-date">
+  <time class="dt-published" datetime="2021-12-03T15:18:19.541Z" itemprop="datePublished">2021-12-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="mac安装qemu："><a href="#mac安装qemu：" class="headerlink" title="mac安装qemu："></a>mac安装qemu：</h1><ol>
+<li><p>安装xcode    输入命令     xcode-select –install</p>
+</li>
+<li><p>下载patched version of qemu： git clone <a target="_blank" rel="noopener" href="https://github.com/mit-pdos/6.828-qemu.git">https://github.com/mit-pdos/6.828-qemu.git</a> qemu</p>
+</li>
+<li><p>配置源代码：./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu” </p>
+</li>
+</ol>
+<ul>
+<li><p>ERROR: pkg-config binary ‘pkg-config’ not found  </p>
+</li>
+<li><p>命令行安装pkg-config：brew install pkg-config</p>
+</li>
+<li><p>查看pkg-config环境配置路径：pkg-config –variable pc_path pkg-config</p>
+<ul>
+<li>输出 /usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/lib/pkgconfig:/usr/local/Homebrew/Library/Homebrew/os/mac/pkgconfig/11.0</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>安装完pkg-config后运行   ./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu”</li>
+</ol>
+<ul>
+<li><p>ERROR: glib-2.12 gthread-2.0 is required to compile QEMU</p>
+<ul>
+<li><p>命令行安装 pkg-config –libs glib-2.12</p>
+<ul>
+<li><p>Package glib-2.12 was not found in the pkg-config search path.</p>
+<p>Perhaps you should add the directory containing `glib-2.12.pc’</p>
+<p>to the PKG_CONFIG_PATH environment variable</p>
+<p>No package ‘glib-2.12’ found</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>命令行安装 brew install glib</li>
+</ul>
+<ol start="5">
+<li>安装完glib后运行    ./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu”</li>
+</ol>
+<ul>
+<li><p>ERROR: pixman &gt;= 0.21.8 not present. Your options:</p>
+<p>​     (1) Preferred: Install the pixman devel package (any recent</p>
+<p>​       distro should have packages as Xorg needs pixman too).</p>
+<p>​     (2) Fetch the pixman submodule, using:</p>
+<p>​       git submodule update –init pixman</p>
+<ul>
+<li>命令行安装 brew install pixman</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>安装完pixman后运行      ./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu”</li>
+</ol>
+<ul>
+<li><p>成功输出</p>
+<ul>
+<li><p>ld: unknown option: –verbose</p>
+<p>Install prefix  /Users/alsc/Desktop/</p>
+<p>BIOS directory  /Users/alsc/Desktop//share/qemu</p>
+<p>…</p>
+<p>CFLAGS      -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -I/usr/local/Cellar/glib/2.70.1/include -I/usr/local/Cellar/glib/2.70.1/include/glib-2.0 -I/usr/local/Cellar/glib/2.70.1/lib/glib-2.0/include -I/usr/local/opt/gettext/include -I/usr/local/Cellar/pcre/8.45/include -g </p>
+<p>QEMU_CFLAGS    -I/usr/local/Cellar/pixman/0.40.0/include/pixman-1 -m64 -DOS_OBJECT_USE_OBJC=0 -arch x86_64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Wstrict-prototypes -Wredundant-decls -Wall -Wundef -Wwrite-strings -Wmissing-prototypes -fno-strict-aliasing -fno-common -Wno-string-plus-int -Wno-initializer-overrides -Wendif-labels -Wmissing-include-dirs -Wempty-body -Wnested-externs -Wformat-security -Wformat-y2k -Winit-self -Wignored-qualifiers -Wold-style-definition -Wtype-limits -fstack-protector-strong </p>
+<p>LDFLAGS      -m64 -framework CoreFoundation -framework IOKit -arch x86_64 -g </p>
+<p>make       make</p>
+<p>install      install</p>
+<p>python      python -B</p>
+<p>smbd       /usr/sbin/smbd</p>
+<p>module support  no</p>
+<p>host CPU     x86_64</p>
+<p>…</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li>make &amp;&amp; make install</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/03/mac%E5%AE%89%E8%A3%85qemu%EF%BC%9A/" data-id="ckwqj7nhh0000ahm41t0gh1s1" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-受了文档的痛" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/11/28/%E5%8F%97%E4%BA%86%E6%96%87%E6%A1%A3%E7%9A%84%E7%97%9B/" class="article-date">
@@ -417,7 +526,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
     </div>
   </div>
 
@@ -428,6 +537,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/12/03/mac%E5%AE%89%E8%A3%85qemu%EF%BC%9A/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2021/11/28/%E5%8F%97%E4%BA%86%E6%96%87%E6%A1%A3%E7%9A%84%E7%97%9B/">受了文档的痛</a>
