@@ -31,10 +31,10 @@
 <meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220430164.png">
 <meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220305848.png">
 <meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220118040.png">
-<meta property="og:image" content="http://example.com/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/graph/image-20211214223739272.png">
-<meta property="og:image" content="http://example.com/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/graph/image-20211214223306039.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214223739272.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214223306039.png">
 <meta property="article:published_time" content="2021-12-14T11:29:58.000Z">
-<meta property="article:modified_time" content="2021-12-14T14:40:32.669Z">
+<meta property="article:modified_time" content="2021-12-14T14:43:12.832Z">
 <meta property="article:author" content="ColvTzzi">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zivlnoff.github.io/graph/image-20211214220816058.png">
@@ -179,9 +179,15 @@
 <p>​    调用视图</p>
 <p><img src="https://zivlnoff.github.io/graph/image-20211214220702450.png"></p>
 <p>​    cola3.0它进化了！</p>
-<p>摘录：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">##### 设计中的弯弯绕</span><br><span class="line"></span><br><span class="line">**深入考察一下，我们系统中，类似于“地心说”这样的弯弯绕的设计，实在是不在少数**。</span><br><span class="line"></span><br><span class="line">**从系统架构的角度看**，有些弯弯绕是因为系统边界划分不合理，导致职责不清，依赖混乱。</span><br><span class="line"></span><br><span class="line">**从应用架构的角度看**，有些弯弯绕是因为过度设计，为了追求所谓的灵活性和可扩展性，使用了不恰当的设计。导致本来可以直观呈现的代码逻辑，被各种包装，各种隐藏，各种转发.... 无形中极大的阻碍了代码的可读性和可理解性，增加了维护成本。</span><br><span class="line"></span><br><span class="line">举个例子，**我看过无数的业务系统，喜欢拿业务流程编排说事情。因此，在业务系统中，可以看到各种五花八门的“弯弯绕设计”。**</span><br><span class="line"></span><br><span class="line">触发这次升级的动机，主要是因为，自己在实践COLA的过程中，的确发现有些华而不实的功能。在COLA作为阿里云的基础应用架构，其影响力越来越大的时候，我有责任给到大家一个正确的引导——**去伪存真，简洁有效，而不是引入更多的复杂度**。</span><br><span class="line"></span><br><span class="line">实际上，COLA是有两部分组成的：</span><br><span class="line"></span><br><span class="line">**一方面COLA是一种架构思想**，是整合了洋葱圈架构、适配器架构、DDD、整洁架构、TMF等架构思想的一种应用架构。</span><br><span class="line"></span><br><span class="line">**另一方面COLA也是框架组件**，通过这次升级，我使用奥卡姆剃刀砍掉了绝大部分的组件能力，仅仅保留了扩展点功能。其用意是不希望COLA作为框架给到应用开发者太多的约束，这不符合简单有效的风格。</span><br><span class="line"></span><br><span class="line">**奥卡姆精神**</span><br></pre></td></tr></table></figure>
-
+<h2 id="摘录："><a href="#摘录：" class="headerlink" title="摘录："></a>摘录：</h2><h5 id="设计中的弯弯绕"><a href="#设计中的弯弯绕" class="headerlink" title="设计中的弯弯绕"></a>设计中的弯弯绕</h5><p><strong>深入考察一下，我们系统中，类似于“地心说”这样的弯弯绕的设计，实在是不在少数</strong>。</p>
+<p><strong>从系统架构的角度看</strong>，有些弯弯绕是因为系统边界划分不合理，导致职责不清，依赖混乱。</p>
+<p><strong>从应用架构的角度看</strong>，有些弯弯绕是因为过度设计，为了追求所谓的灵活性和可扩展性，使用了不恰当的设计。导致本来可以直观呈现的代码逻辑，被各种包装，各种隐藏，各种转发…. 无形中极大的阻碍了代码的可读性和可理解性，增加了维护成本。</p>
+<p>举个例子，<strong>我看过无数的业务系统，喜欢拿业务流程编排说事情。因此，在业务系统中，可以看到各种五花八门的“弯弯绕设计”。</strong></p>
+<p>触发这次升级的动机，主要是因为，自己在实践COLA的过程中，的确发现有些华而不实的功能。在COLA作为阿里云的基础应用架构，其影响力越来越大的时候，我有责任给到大家一个正确的引导——<strong>去伪存真，简洁有效，而不是引入更多的复杂度</strong>。</p>
+<p>实际上，COLA是有两部分组成的：</p>
+<p><strong>一方面COLA是一种架构思想</strong>，是整合了洋葱圈架构、适配器架构、DDD、整洁架构、TMF等架构思想的一种应用架构。</p>
+<p><strong>另一方面COLA也是框架组件</strong>，通过这次升级，我使用奥卡姆剃刀砍掉了绝大部分的组件能力，仅仅保留了扩展点功能。其用意是不希望COLA作为框架给到应用开发者太多的约束，这不符合简单有效的风格。</p>
+<p><strong>奥卡姆精神</strong></p>
 <p>​    </p>
 <p>​    cola4.0升华了</p>
 <p>​    什么是应用架构的本质，它这样定义架构，架构的本质，简单来说，就是<strong>要素结构</strong>。</p>
@@ -369,19 +375,19 @@
 </ul>
 <p><img src="https://zivlnoff.github.io/graph/image-20211214220118040.png"></p>
 <p>​    我觉得能把以下理解好，就能理解计算机中很重要的一个概念，所以我把它毫无保留的摘抄了下来————任何难以直接实现的目的，都可以通过一层抽象去完成。</p>
-<h1 id="摘录："><a href="#摘录：" class="headerlink" title="摘录："></a>摘录：</h1><h4 id="新二方库定位"><a href="#新二方库定位" class="headerlink" title="新二方库定位"></a>新二方库定位</h4><p>关于二方库的定位表面上来看，是一个简单问题，<strong>因为服务的二方库无外乎就是用来暴露接口和传递数据的（DTO）。不过，往深层次思考，它并不是一个简单的问题，因为它涉及到不同界限上下文（Bounded Context）之间的协作问题。</strong> 它是分布式环境下，不同服务（SOA，RPC，微服务，叫法不同，本质一样）之间如何协作的重要架构设计问题。</p>
+<h1 id="摘录：-1"><a href="#摘录：-1" class="headerlink" title="摘录："></a>摘录：</h1><h4 id="新二方库定位"><a href="#新二方库定位" class="headerlink" title="新二方库定位"></a>新二方库定位</h4><p>关于二方库的定位表面上来看，是一个简单问题，<strong>因为服务的二方库无外乎就是用来暴露接口和传递数据的（DTO）。不过，往深层次思考，它并不是一个简单的问题，因为它涉及到不同界限上下文（Bounded Context）之间的协作问题。</strong> 它是分布式环境下，不同服务（SOA，RPC，微服务，叫法不同，本质一样）之间如何协作的重要架构设计问题。</p>
 <h5 id="Bounded-Context之间的协作"><a href="#Bounded-Context之间的协作" class="headerlink" title="Bounded Context之间的协作"></a>Bounded Context之间的协作</h5><p>如何实现不同域之间的协作，同时又要保证各自领域的概念的完整性是有一套方法论的。总体来说，大概有两种方式：共享内核（Shared Kernel）和防腐层（ACL，Anti-Corruption Layer）。</p>
 <p><strong>1. 共享内核（Shared Kernel）</strong></p>
 <blockquote>
 <p>It’s possible that only one of the teams will maintain the code, build, and test for what is shared. A Shared Kernel is often very difficult to conceive in the first place, and difficult to maintain, because you must have open communication between teams and constant agreement on what constitutes the model to be shared.</p>
 </blockquote>
-<p><img src="graph/image-20211214223739272.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214223739272.png"></p>
 <p>上面是引用《DDD Distilled》（作者是Vaughn Vernon）关于Shared Kernel描述的原话，其优点是Share（减少重复建设），其缺点也是Share（团队之间紧耦合）。</p>
 <p><strong>2. 防腐层（ACL，Anti-Corruption Layer）</strong></p>
 <blockquote>
 <p>An Anticorruption Layer is the most defensive Context Mapping relationship, where the downstream team creates a translation layer between its Ubiquitous Language (model) and the Ubiquitous Language (model) that is upstream to it.</p>
 </blockquote>
-<p><img src="graph/image-20211214223306039.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214223306039.png"></p>
 <p>同样是来自于《DDD Distilled》, 防腐层是隔离最彻底的做法，其优点是没有Share（完全解耦，各自独立），其缺点也是没有Share（有一定的转换成本）。</p>
 <p><strong>不过我和Vernon的观点差不多，都比较赞成防腐层的做法。因为增加的语义转换陈本，相较于系统的可维护性和可理解性而言，是完全值得的。</strong></p>
 <blockquote>
