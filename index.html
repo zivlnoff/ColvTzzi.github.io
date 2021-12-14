@@ -323,7 +323,7 @@
 </tr>
 </tbody></table>
 <p>​    这点很重要，应该👂🏻进作者的良言：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">为什么Domain的model是可选的？因为COLA是应用架构，不是DDD架构。在工作中，很多同学问我领域模型要怎么设计，**我的回答通常是：无有必要勿增实体**。领域模型对设计能力要求很高，没把握用好，一个错误的抽象还不如不抽象，宁可不要用，也不要滥用，不要为了DDD而DDD。</span><br><span class="line"></span><br><span class="line">问题的关键是要看，新增的模型没有给你带来收益。比如**有没有帮助系统解耦，有没有提升业务语义表达能力的提升，有没有提升系统的可维护性和可测性等等。**</span><br><span class="line"></span><br><span class="line">模型虽然可选，但DDD的思想是一定要去学习和贯彻的，特别是统一语言、边界上下文、防腐层的思想，值得深入学习，仔细体会。实际上，COLA里面的很多设计思想都来自于DDD。其中就包括**领域包的设计**。</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">为什么Domain的model是可选的？因为COLA是应用架构，不是DDD架构。在工作中，很多同学问我领域模型要怎么设计，我的回答通常是：无有必要勿增实体。领域模型对设计能力要求很高，没把握用好，一个错误的抽象还不如不抽象，宁可不要用，也不要滥用，不要为了DDD而DDD。</span><br><span class="line"></span><br><span class="line">问题的关键是要看，新增的模型没有给你带来收益。比如有没有帮助系统解耦，有没有提升业务语义表达能力的提升，有没有提升系统的可维护性和可测性等等。</span><br><span class="line"></span><br><span class="line">模型虽然可选，但DDD的思想是一定要去学习和贯彻的，特别是统一语言、边界上下文、防腐层的思想，值得深入学习，仔细体会。实际上，COLA里面的很多设计思想都来自于DDD。其中就包括领域包的设计。</span><br></pre></td></tr></table></figure>
 
 <p>​    前面的包定义，都是功能维度的定义。为了兼顾领域维度的内聚性，我们有必要对包结构进行一下微调，即顶层包结构应该是按照领域划分，让领域内聚。</p>
 <p>​    也就是说，我们要综合考虑功能和领域两个维度包结构定义。按照领域和功能两个维度分包策略，最后呈现出来的，是如下图所示的顶层包节点是领域名称，领域之下，再按功能划分包结构。<br><img src="https://zivlnoff.github.io/graph/image-20211214220549484.png"></p>
@@ -352,13 +352,13 @@
 <blockquote>
 <p>It’s possible that only one of the teams will maintain the code, build, and test for what is shared. A Shared Kernel is often very difficult to conceive in the first place, and difficult to maintain, because you must have open communication between teams and constant agreement on what constitutes the model to be shared.</p>
 </blockquote>
-<p><img src="https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/3740e7f2625e6930c06f1216c5e1fbcb.png?Expires=1639488763&OSSAccessKeyId=5brTYsCF9kNTYdU5&Signature=MzRFK0h9aWuTfvDC8/JwvVCBi20=" alt="image.png"></p>
+<p><img src="graph/image-20211214223739272.png"></p>
 <p>上面是引用《DDD Distilled》（作者是Vaughn Vernon）关于Shared Kernel描述的原话，其优点是Share（减少重复建设），其缺点也是Share（团队之间紧耦合）。</p>
 <p><strong>2. 防腐层（ACL，Anti-Corruption Layer）</strong></p>
 <blockquote>
 <p>An Anticorruption Layer is the most defensive Context Mapping relationship, where the downstream team creates a translation layer between its Ubiquitous Language (model) and the Ubiquitous Language (model) that is upstream to it.</p>
 </blockquote>
-<p><img src="https://ata2-img.oss-cn-zhangjiakou.aliyuncs.com/54c7fc014328569f02483ffcb3d87f2a.png?Expires=1639488763&OSSAccessKeyId=5brTYsCF9kNTYdU5&Signature=N8djdlzCYLekAJZgp1OaqTH+iEA=" alt="image.png"></p>
+<p><img src="graph/image-20211214223306039.png"></p>
 <p>同样是来自于《DDD Distilled》, 防腐层是隔离最彻底的做法，其优点是没有Share（完全解耦，各自独立），其缺点也是没有Share（有一定的转换成本）。</p>
 <p><strong>不过我和Vernon的观点差不多，都比较赞成防腐层的做法。因为增加的语义转换陈本，相较于系统的可维护性和可理解性而言，是完全值得的。</strong></p>
 <blockquote>
