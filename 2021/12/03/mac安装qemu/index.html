@@ -14,7 +14,7 @@
 <meta property="og:description" content="安装xcode    输入命令     xcode-select –install  下载patched version of qemu： git clone https:&#x2F;&#x2F;github.com&#x2F;mit-pdos&#x2F;6.828-qemu.git qemu  配置源代码：.&#x2F;configure –disable-kvm –disable-werror –disable-sdl –prefix&#x3D;&#x2F;U">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-03T15:20:36.000Z">
-<meta property="article:modified_time" content="2021-12-03T15:24:46.373Z">
+<meta property="article:modified_time" content="2021-12-04T11:41:34.427Z">
 <meta property="article:author" content="ColvTzzi">
 <meta name="twitter:card" content="summary">
   
@@ -174,7 +174,32 @@
 </li>
 </ul>
 <ol start="7">
-<li>make &amp;&amp; make install</li>
+<li><p>make &amp;&amp; make install</p>
+</li>
+<li><p>PATH=${PATH}:/usr/local/opt/gettext/bin make install</p>
+</li>
+<li><p>下载Clion</p>
+</li>
+<li><p>进入lab1目录  命令行输入 make</p>
+</li>
+</ol>
+<ul>
+<li><p>Error: Couldn’t find an i386-<em>-elf version of GCC/binutils.<br>*** Is the directory with i386-jos-elf-gcc in your PATH?<br>*** If your i386-</em>-elf toolchain is installed with a command<br>*** prefix other than ‘i386-jos-elf-‘, set your GCCPREFIX<br>*** environment variable to that prefix and run ‘make’ again.<br>*** To turn off this error, run ‘gmake GCCPREFIX= …’.</p>
+<hr>
+<hr>
+<p>*** Error: Couldn’t find a working QEMU executable.<br>*** Is the directory containing the qemu binary in your PATH<br>*** or have you tried setting the QEMU variable in conf/env.mk?</p>
+<hr>
+<p>clang: error: unsupported option ‘-gstabs’<br>clang: error: unknown argument: ‘-fno-tree-ch’</p>
+<ul>
+<li>as kern/entry.S<br>clang: error: unsupported option ‘-gstabs’<br>clang: error: unsupported option ‘-gstabs’<br>clang: error: unknown argument: ‘-fno-tree-ch’<br>make: *** [obj/kern/entry.o] Error 1</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>安装RISC-V toolchain    是否有必要？<ol>
+<li><a target="_blank" rel="noopener" href="https://zhayujie.com/mit6828-env.html">https://zhayujie.com/mit6828-env.html</a></li>
+</ol>
+</li>
 </ol>
 
       
@@ -189,6 +214,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          实习俩月再看cola
+        
+      </div>
+    </a>
   
   
     <a href="/2021/11/28/%E5%8F%97%E4%BA%86%E6%96%87%E6%A1%A3%E7%9A%84%E7%97%9B/" id="article-nav-older" class="article-nav-link-wrap">
@@ -229,6 +263,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/">实习俩月再看cola</a>
+          </li>
         
           <li>
             <a href="/2021/12/03/mac%E5%AE%89%E8%A3%85qemu/">mac安装qemu</a>
