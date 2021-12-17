@@ -71,10 +71,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-受了文档的痛" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-mac安装qemu" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/11/28/%E5%8F%97%E4%BA%86%E6%96%87%E6%A1%A3%E7%9A%84%E7%97%9B/" class="article-date">
-  <time class="dt-published" datetime="2021-11-28T10:46:57.000Z" itemprop="datePublished">2021-11-28</time>
+    <a href="/2021/12/03/mac%E5%AE%89%E8%A3%85qemu/" class="article-date">
+  <time class="dt-published" datetime="2021-12-03T15:20:36.000Z" itemprop="datePublished">2021-12-03</time>
 </a>
     
   </div>
@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/11/28/%E5%8F%97%E4%BA%86%E6%96%87%E6%A1%A3%E7%9A%84%E7%97%9B/">受了文档的痛</a>
+      <a class="p-name article-title" href="/2021/12/03/mac%E5%AE%89%E8%A3%85qemu/">mac安装qemu</a>
     </h1>
   
 
@@ -93,22 +93,117 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>​    相比于技术的理解、学习、使用、进而转化为能力的提升这些自身能控制并能直接体会的到的“食粮”，学习业务逻辑未免过于痛苦了。不得不思考一个问题，写代码会把“这是写给人看的”贴在脑门上进而追求逻辑清晰、良好注释、高内聚、架构设计、领域设计等等，项目技术方案是不是也应该“让新人能看懂呢？”</p>
-<p>​    一个项目文档应该有什么，我自己也做得不好，虽然接触时间很短，但我知道这种难受不会是短暂的，不想每个人进来都被折磨一阵子才稍微顺手点，或者就是要去思考交流成本的问题了，因为交流的顺畅是这行业项目发展到一定高度最重要的东西了在我看来。</p>
-<p>​    我觉得但凡是学习，都得有个入口吧，应该是项目系统架构、业务架构、我们的项目注重什么、为什么要弄这个项目、也就是尽可能的“大”。这一点不难，每个团队都可以做到，当然，及时更新和简洁清晰也不是那么容易的。</p>
-<p>​    然后就是领域概念，这个我认为DDD提供的方法是合理的，这里应该允许有“新的”概念，但一定要充分解释并放在一块，其实也是把文档内聚了。</p>
-<p>​    进而区分业务和技术方案，从业务可以留个到技术方案的跳转链接，而且业务按时间顺序从新到旧，及时更新，并注明已经过期的业务，不要让别人浪费时间去看一个“已经成仁”的业务！</p>
-<p>​    技术方案就是画图画图！！加上简洁的解释！！让人知道你在干嘛，为什么这样干。</p>
-<p>​    我也不喜欢看鼠标滑不到底的技术方案，不是因为怕看的多，而是怕看完之后去想，我这是看了个啥？我串不通！我自己也写的非常繁琐（不要把除了技术之外的东西放到这个篮子里）至于测试之类的东西，也开个目录好的嘛。</p>
-<p>​    为了帮助新人更快成为项目中“守规矩”的一员，请大佬们把代码中、中间件的使用中、配置中用到的神技都拿出来，而且是符合一个宗旨的，比如关注性能和设计很重要，又比如统一用什么打日志，统一架构层，统一语法（虽然这很难）。</p>
-<p>​    请不要没想清楚就开一个目录，不要让人点进去了带着失望而归，嗯就这个箭头“&lt;-”~~。</p>
-<p>​    请把所有“有用”的东西留下，请按类别分类，合理跳转，细节用时间排序，让人带着这个是干嘛的想法进，带着好简单，原来是这样的想法舒适的走出你的领地。</p>
-<p>​    一个项目的完善是很不容易的，至少在开发人员、测试人员、业务方能力达到一致性就没那么简单，但只要勤勤恳恳的、字字斟酌的，写出来的文档那就是让人想多看几眼下面的署名！</p>
+        <ol>
+<li><p>安装xcode    输入命令     xcode-select –install</p>
+</li>
+<li><p>下载patched version of qemu： git clone <a target="_blank" rel="noopener" href="https://github.com/mit-pdos/6.828-qemu.git">https://github.com/mit-pdos/6.828-qemu.git</a> qemu</p>
+</li>
+<li><p>配置源代码：./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu” </p>
+</li>
+</ol>
+<ul>
+<li><p>ERROR: pkg-config binary ‘pkg-config’ not found  </p>
+</li>
+<li><p>命令行安装pkg-config：brew install pkg-config</p>
+</li>
+<li><p>查看pkg-config环境配置路径：pkg-config –variable pc_path pkg-config</p>
+<ul>
+<li>输出 /usr/local/lib/pkgconfig:/usr/local/share/pkgconfig:/usr/lib/pkgconfig:/usr/local/Homebrew/Library/Homebrew/os/mac/pkgconfig/11.0</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li>安装完pkg-config后运行   ./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu”</li>
+</ol>
+<ul>
+<li><p>ERROR: glib-2.12 gthread-2.0 is required to compile QEMU</p>
+<ul>
+<li><p>命令行安装 pkg-config –libs glib-2.12</p>
+<ul>
+<li><p>Package glib-2.12 was not found in the pkg-config search path.</p>
+<p>Perhaps you should add the directory containing `glib-2.12.pc’</p>
+<p>to the PKG_CONFIG_PATH environment variable</p>
+<p>No package ‘glib-2.12’ found</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>命令行安装 brew install glib</li>
+</ul>
+<ol start="5">
+<li>安装完glib后运行    ./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu”</li>
+</ol>
+<ul>
+<li><p>ERROR: pixman &gt;= 0.21.8 not present. Your options:</p>
+<p>​     (1) Preferred: Install the pixman devel package (any recent</p>
+<p>​       distro should have packages as Xorg needs pixman too).</p>
+<p>​     (2) Fetch the pixman submodule, using:</p>
+<p>​       git submodule update –init pixman</p>
+<ul>
+<li>命令行安装 brew install pixman</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>安装完pixman后运行      ./configure –disable-kvm –disable-werror –disable-sdl –prefix=/Users/alsc/Desktop/ –target-list=”i386-softmmu x86_64-softmmu”</li>
+</ol>
+<ul>
+<li><p>成功输出</p>
+<ul>
+<li><p>ld: unknown option: –verbose</p>
+<p>Install prefix  /Users/alsc/Desktop/</p>
+<p>BIOS directory  /Users/alsc/Desktop//share/qemu</p>
+<p>…</p>
+<p>CFLAGS      -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -I/usr/local/Cellar/glib/2.70.1/include -I/usr/local/Cellar/glib/2.70.1/include/glib-2.0 -I/usr/local/Cellar/glib/2.70.1/lib/glib-2.0/include -I/usr/local/opt/gettext/include -I/usr/local/Cellar/pcre/8.45/include -g </p>
+<p>QEMU_CFLAGS    -I/usr/local/Cellar/pixman/0.40.0/include/pixman-1 -m64 -DOS_OBJECT_USE_OBJC=0 -arch x86_64 -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Wstrict-prototypes -Wredundant-decls -Wall -Wundef -Wwrite-strings -Wmissing-prototypes -fno-strict-aliasing -fno-common -Wno-string-plus-int -Wno-initializer-overrides -Wendif-labels -Wmissing-include-dirs -Wempty-body -Wnested-externs -Wformat-security -Wformat-y2k -Winit-self -Wignored-qualifiers -Wold-style-definition -Wtype-limits -fstack-protector-strong </p>
+<p>LDFLAGS      -m64 -framework CoreFoundation -framework IOKit -arch x86_64 -g </p>
+<p>make       make</p>
+<p>install      install</p>
+<p>python      python -B</p>
+<p>smbd       /usr/sbin/smbd</p>
+<p>module support  no</p>
+<p>host CPU     x86_64</p>
+<p>…</p>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="7">
+<li><p>make &amp;&amp; make install</p>
+</li>
+<li><p>PATH=${PATH}:/usr/local/opt/gettext/bin make install</p>
+</li>
+<li><p>下载Clion</p>
+</li>
+<li><p>进入lab1目录  命令行输入 make</p>
+</li>
+</ol>
+<ul>
+<li><p>Error: Couldn’t find an i386-<em>-elf version of GCC/binutils.<br>*** Is the directory with i386-jos-elf-gcc in your PATH?<br>*** If your i386-</em>-elf toolchain is installed with a command<br>*** prefix other than ‘i386-jos-elf-‘, set your GCCPREFIX<br>*** environment variable to that prefix and run ‘make’ again.<br>*** To turn off this error, run ‘gmake GCCPREFIX= …’.</p>
+<hr>
+<hr>
+<p>*** Error: Couldn’t find a working QEMU executable.<br>*** Is the directory containing the qemu binary in your PATH<br>*** or have you tried setting the QEMU variable in conf/env.mk?</p>
+<hr>
+<p>clang: error: unsupported option ‘-gstabs’<br>clang: error: unknown argument: ‘-fno-tree-ch’</p>
+<ul>
+<li>as kern/entry.S<br>clang: error: unsupported option ‘-gstabs’<br>clang: error: unsupported option ‘-gstabs’<br>clang: error: unknown argument: ‘-fno-tree-ch’<br>make: *** [obj/kern/entry.o] Error 1</li>
+</ul>
+</li>
+</ul>
+<ol start="11">
+<li>安装RISC-V toolchain    是否有必要？<ol>
+<li><a target="_blank" rel="noopener" href="https://zhayujie.com/mit6828-env.html">https://zhayujie.com/mit6828-env.html</a></li>
+</ol>
+</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/28/%E5%8F%97%E4%BA%86%E6%96%87%E6%A1%A3%E7%9A%84%E7%97%9B/" data-id="ckwj4de6r0001gum47ezzc5g3" data-title="受了文档的痛" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/12/03/mac%E5%AE%89%E8%A3%85qemu/" data-id="ckwqjbosy0000fnm44smm4xys" data-title="mac安装qemu" class="article-share-link">Share</a>
       
       
       
@@ -124,7 +219,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -156,6 +251,10 @@
       <ul>
         
           <li>
+            <a href="/2021/12/17/%E7%95%99%E4%B8%8B/">留下</a>
+          </li>
+        
+          <li>
             <a href="/2021/12/16/%E5%9C%A8%E6%88%90%E9%95%BF/">在成长</a>
           </li>
         
@@ -169,10 +268,6 @@
         
           <li>
             <a href="/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/">实习俩月再看cola</a>
-          </li>
-        
-          <li>
-            <a href="/2021/12/03/mac%E5%AE%89%E8%A3%85qemu/">mac安装qemu</a>
           </li>
         
       </ul>
