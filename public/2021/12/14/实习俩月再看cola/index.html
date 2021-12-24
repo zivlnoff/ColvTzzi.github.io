@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>实习俩月再看cola | 有种🌹少年是MayDay</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="知识总是在不断膨胀，最终都会浓缩成精华​    在我们的应用中，如果处处都reasonable，那可能就是现实生活的“田园”了吧。尽管我们没法去把这一切一字排开，但其中的内涵，确实值得咀嚼。至少方法总比问题多，不是吗  可扩展性差？-&gt;扩展点（一种嵌入框架或者称为注入的多维策略工厂）  面向过程？-&gt;SOLID原则、设计模式、UML图、领域建模(Eric Evans的《领域驱动设计》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实习俩月再看cola">
+<meta property="og:url" content="http://example.com/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/index.html">
+<meta property="og:site_name" content="有种🌹少年是MayDay">
+<meta property="og:description" content="知识总是在不断膨胀，最终都会浓缩成精华​    在我们的应用中，如果处处都reasonable，那可能就是现实生活的“田园”了吧。尽管我们没法去把这一切一字排开，但其中的内涵，确实值得咀嚼。至少方法总比问题多，不是吗  可扩展性差？-&gt;扩展点（一种嵌入框架或者称为注入的多维策略工厂）  面向过程？-&gt;SOLID原则、设计模式、UML图、领域建模(Eric Evans的《领域驱动设计》">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220816058.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220805478.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214203203905.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220753934.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220745457.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220723498.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220711990.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220702450.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220653468.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220636733.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220617858.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220609419.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220601108.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220549484.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220540738.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220430164.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220305848.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214220118040.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214223739272.png">
+<meta property="og:image" content="https://zivlnoff.github.io/graph/image-20211214223306039.png">
+<meta property="article:published_time" content="2021-12-14T11:29:58.000Z">
+<meta property="article:modified_time" content="2021-12-14T14:43:12.832Z">
+<meta property="article:author" content="ColvTzzi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zivlnoff.github.io/graph/image-20211214220816058.png">
+  
+    <link rel="alternate" href="/atom.xml" title="有种🌹少年是MayDay" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">有种🌹少年是MayDay</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-实习俩月再看cola" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/" class="article-date">
+  <time class="dt-published" datetime="2021-12-14T11:29:58.000Z" itemprop="datePublished">2021-12-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      实习俩月再看cola
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><img src="https://zivlnoff.github.io/graph/image-20211214220816058.png"></p>
+<h3 id="知识总是在不断膨胀，最终都会浓缩成精华"><a href="#知识总是在不断膨胀，最终都会浓缩成精华" class="headerlink" title="知识总是在不断膨胀，最终都会浓缩成精华"></a>知识总是在不断膨胀，最终都会浓缩成精华</h3><p>​    在我们的应用中，如果处处都reasonable，那可能就是现实生活的“田园”了吧。尽管我们没法去把这一切一字排开，但其中的内涵，确实值得咀嚼。至少方法总比问题多，不是吗</p>
+<ul>
+<li><p>可扩展性差？-&gt;扩展点（一种嵌入框架或者称为注入的多维策略工厂）</p>
+</li>
+<li><p>面向过程？-&gt;SOLID原则、设计模式、UML图、领域建模(Eric Evans的《领域驱动设计》)。</p>
+</li>
+<li><p>分层不合理？ -&gt;分离<strong>必要</strong>关注点</p>
+</li>
+<li><p>随心所欲？ -&gt;规范+CR</p>
+</li>
+</ul>
+<p>​    我只能告诉你，当你够强，你施展的空间比天大</p>
+<p>​    SOLID原则是基石，是你的武器，玩过DNF吗，武器是可以打磨的，单一职责原则(SRP)，开闭原则(OCP)，里氏替换原则(LSP)，接口隔离原则(ISP)和依赖倒置原则(DIP)，给你了，看你怎么使用。抽象能力，设计模式，架构模式，UML，以及阅读优秀框架源码是你很好的朋友。</p>
+<p>​    应该都比我很熟悉领域建模吧，我也就开发了没几个月，感觉也有味了</p>
+<ul>
+<li>思想和方法论（这是人生</li>
+<li>贫血和充血模式（依赖团队水平</li>
+</ul>
+<p>​    分层设计都有所耳闻，相信吧，设计模式和领域设计能很好的帮你去根据业务场景去设计。</p>
+<p>​    规范设计是真的很有诱惑，放对位置、贴好标签、类名约定、方法名约定、错误码约定（系统异常和业务异常）、测试约定，这依旧取决团队水平。</p>
+<p>​    来看看cola呗~</p>
+<p>​    cola1.0相当炫酷，这个起步我jio得很不错</p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220805478.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214203203905.png"></p>
+<p>​    cola2.0，这个突破很大了，增加了更加明确的定义和重要的依赖倒置设计原则，结构清晰带来了很好的可理解性和可维护性</p>
+<p><strong>新架构分层</strong>：Domain层不再直接依赖Infrastructure层。<br><strong>新组件划分</strong>：对组件进行了重新定义和划分，加了新组件，去除了一些老组件（Validator，Convertor等）。<br><strong>新扩展点设计</strong>：引入了新概念，让扩展更加灵活。<br><strong>新二方库定位</strong>：二方库不仅仅是DTO，也是Domain Model的轻量级表达和实现。</p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220753934.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220745457.png"></p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220723498.png"></p>
+<ol>
+<li><strong>二方库里的组件</strong><ul>
+<li>api：存放的是应用对外的接口。</li>
+<li>dto.domainmodel：用来做数据传输的轻量级领域对象。</li>
+<li>dto.domainevent: 用来做数据传输的领域事件。</li>
+</ul>
+</li>
+<li><strong>Application里的组件</strong><ul>
+<li>service：接口实现的facade，没有业务逻辑，可以包含对不同终端的adapter。</li>
+<li>eventhandler：处理领域事件，包括本域的和外域的。</li>
+<li>executor：用来处理命令（Command）和查询（Query），对复杂业务，可以包含<a target="_blank" rel="noopener" href="https://ata.alibaba-inc.com/articles/147540?spm=ata.25287382.0.0.6bee7536AJrV8H">Phase和Step</a>。</li>
+<li>interceptor: COLA提供的对所有请求的AOP处理机制。</li>
+</ul>
+</li>
+<li><strong>Domain里的组件</strong><ul>
+<li>domain：领域实体，允许继承domainmodel。</li>
+<li>domainservice: 领域服务，用来提供更粗粒度的领域能力。</li>
+<li>gateway：对外依赖的网关接口，包括存储、RPC、Search等。</li>
+</ul>
+</li>
+<li><strong>Infrastructure里的组件</strong><ul>
+<li>config：配置信息相关。</li>
+<li>message：消息处理相关。</li>
+<li>repository：存储相关，是gateway的特化，主要用来做本域的数据CRUD操作。</li>
+<li>gateway：对外依赖的网关接口（Domain里的gateway）的实现。</li>
+</ul>
+</li>
+</ol>
+<p>​    依赖视图就是介个样子：</p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220711990.png"></p>
+<p>​    调用视图</p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220702450.png"></p>
+<p>​    cola3.0它进化了！</p>
+<h2 id="摘录："><a href="#摘录：" class="headerlink" title="摘录："></a>摘录：</h2><h5 id="设计中的弯弯绕"><a href="#设计中的弯弯绕" class="headerlink" title="设计中的弯弯绕"></a>设计中的弯弯绕</h5><p><strong>深入考察一下，我们系统中，类似于“地心说”这样的弯弯绕的设计，实在是不在少数</strong>。</p>
+<p><strong>从系统架构的角度看</strong>，有些弯弯绕是因为系统边界划分不合理，导致职责不清，依赖混乱。</p>
+<p><strong>从应用架构的角度看</strong>，有些弯弯绕是因为过度设计，为了追求所谓的灵活性和可扩展性，使用了不恰当的设计。导致本来可以直观呈现的代码逻辑，被各种包装，各种隐藏，各种转发…. 无形中极大的阻碍了代码的可读性和可理解性，增加了维护成本。</p>
+<p>举个例子，<strong>我看过无数的业务系统，喜欢拿业务流程编排说事情。因此，在业务系统中，可以看到各种五花八门的“弯弯绕设计”。</strong></p>
+<p>触发这次升级的动机，主要是因为，自己在实践COLA的过程中，的确发现有些华而不实的功能。在COLA作为阿里云的基础应用架构，其影响力越来越大的时候，我有责任给到大家一个正确的引导——<strong>去伪存真，简洁有效，而不是引入更多的复杂度</strong>。</p>
+<p>实际上，COLA是有两部分组成的：</p>
+<p><strong>一方面COLA是一种架构思想</strong>，是整合了洋葱圈架构、适配器架构、DDD、整洁架构、TMF等架构思想的一种应用架构。</p>
+<p><strong>另一方面COLA也是框架组件</strong>，通过这次升级，我使用奥卡姆剃刀砍掉了绝大部分的组件能力，仅仅保留了扩展点功能。其用意是不希望COLA作为框架给到应用开发者太多的约束，这不符合简单有效的风格。</p>
+<p><strong>奥卡姆精神</strong></p>
+<p>​    </p>
+<p>​    cola4.0升华了</p>
+<p>​    什么是应用架构的本质，它这样定义架构，架构的本质，简单来说，就是<strong>要素结构</strong>。</p>
+<p>​    所谓的<strong>要素（Components）是指架构中的主要元素，结构是指要素之间的相互关系（Relationship）</strong>。<br><img src="https://zivlnoff.github.io/graph/image-20211214220653468.png"></p>
+<ul>
+<li>组织架构：其要素是什么？组成组织的要素当然是人，结构呢？结构是人与人之间的关系。因此，组织架构就是关于定义人的职责划分，以及人与人之间协作关系的一种设计方法。</li>
+<li>应用架构：<strong>代码是其核心组成要素，结构就是这些代码该如何被组织</strong>，也就是要如何处理模块（Module）、组件（Component）、包（Package）和类（Class）之间的关系。简而言之，<strong>应用架构就是要解决代码要如何被组织的问题。</strong></li>
+</ul>
+<p>​    一个没有架构的应用系统，就像一堆随意堆放、杂乱无章的玩具，只有熵值，没有熵减。而一个有良好架构的应用系统，有章法、有结构，一切都显得井井有条。<br><img src="https://zivlnoff.github.io/graph/image-20211214220636733.png"></p>
+<ul>
+<li><p>好的组织架构</p>
+<ul>
+<li>会遵循一定的架构模式，大部分的组织都会按职能和业务来设计自己的架构。如果你反其道而行之，硬要把销售、财务和技术人员放在一个部门，就会显得很奇怪。</li>
+</ul>
+</li>
+<li><p>好的应用架构</p>
+<ul>
+<li>遵循一些共同模式，不管是六边形架构、洋葱圈架构、整洁架构、还是COLA架构，<strong>都提倡以业务为核心，解耦外部依赖，分离业务复杂度和技术复杂度</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>​    应用架构的本质，就是要从繁杂的业务系统中提炼出共性，找到解决业务问题的最佳共同模式，为开发人员提供统一的认知，治理混乱。帮助应用系统“从混乱到有序”，<strong>COLA架构就是为此而生，其核心职责就是定义良好的应用结构，提供最佳实践</strong>。</p>
+<p>​    例如，典型的业务系统都需要：</p>
+<ul>
+<li>接收request，响应response；</li>
+<li>做业务逻辑处理，像校验参数，状态流转，业务计算等等；</li>
+<li>和外部系统有联动，像数据库，微服务，搜索引擎等；</li>
+</ul>
+<p>​    正是有这样的共性存在，才会有很多普适的架构思想出现，比如分层架构、六边形架构、洋葱圈架构、整洁架构（Clean Architecture）、DDD架构等等。    </p>
+<p>​    对于一个典型的业务应用系统来说，COLA会做如下层次定义，每一层都有明确的职责定义：</p>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220617858.png"></p>
+<p>1）适配层（Adapter Layer）：负责对前端展示（web，wireless，wap）的路由和适配，对于传统B/S系统而言，adapter就相当于MVC中的controller；</p>
+<p>2）应用层（Application Layer）：主要负责获取输入，组装上下文，参数校验，调用领域层做业务处理，如果需要的话，发送消息通知等。层次是开放的，应用层也可以绕过领域层，直接访问基础实施层；</p>
+<p>3）领域层（Domain Layer）：主要是封装了核心业务逻辑，并通过领域服务（Domain Service）和领域对象（Domain Entity）的方法对App层提供业务实体和业务逻辑计算。领域是应用的核心，不依赖任何其他层次；</p>
+<p>4）基础实施层（Infrastructure Layer）：主要负责技术细节问题的处理，比如数据库的CRUD、搜索引擎、文件系统、分布式服务的RPC等。此外，领域防腐的重任也落在这里，外部依赖需要通过gateway的转义处理，才能被上面的App层和Domain层使用。</p>
+<p>​    分层是属于大粒度的职责划分，太粗，我们有必要往下再down一层，细化到包结构的粒度，才能更好的指导我们的工作。</p>
+<p>​    还是拿一堆玩具举例子，分层类似于拿来了一个架子，分包类似于在每一层架子上又放置了多个收纳盒。<strong>所谓的内聚，就是把功能类似的玩具放在一个盒子里，这样可以让应用结构清晰，极大的降低系统的认知成本和维护成本</strong>。<br><img src="https://zivlnoff.github.io/graph/image-20211214220609419.png"></p>
+<p>​    那么，对于一个后端应用来说，应该需要哪些收纳盒呢？这一块的设计真可谓是费了老鼻子劲了，基本上每一次COLA的迭代都会涉及到包结构的调整，迭代到现在，才算基本稳定下来。<br><img src="https://zivlnoff.github.io/graph/image-20211214220601108.png"></p>
+<p>各个包结构的简要功能描述，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>包名</th>
+<th>功能</th>
+<th>必选</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Adapter层</td>
+<td>web</td>
+<td>处理页面请求的Controller</td>
+<td>否</td>
+</tr>
+<tr>
+<td>Adapter层</td>
+<td>wireless</td>
+<td>处理无线端的适配</td>
+<td>否</td>
+</tr>
+<tr>
+<td>Adapter层</td>
+<td>wap</td>
+<td>处理wap端的适配</td>
+<td>否</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>App层</td>
+<td>executor</td>
+<td>处理request，包括command和query</td>
+<td>是</td>
+</tr>
+<tr>
+<td>App层</td>
+<td>consumer</td>
+<td>处理外部message</td>
+<td>否</td>
+</tr>
+<tr>
+<td>App层</td>
+<td>scheduler</td>
+<td>处理定时任务</td>
+<td>否</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Domain层</td>
+<td>model</td>
+<td>领域模型</td>
+<td>否</td>
+</tr>
+<tr>
+<td>Domain层</td>
+<td>ability</td>
+<td>领域能力，包括DomainService</td>
+<td>否</td>
+</tr>
+<tr>
+<td>Domain层</td>
+<td>gateway</td>
+<td>领域网关，解耦利器</td>
+<td>是</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Infra层</td>
+<td>gatewayimpl</td>
+<td>网关实现</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Infra层</td>
+<td>mapper</td>
+<td>ibatis数据库映射</td>
+<td>否</td>
+</tr>
+<tr>
+<td>Infra层</td>
+<td>config</td>
+<td>配置信息</td>
+<td>否</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Client SDK</td>
+<td>api</td>
+<td>服务对外透出的API</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Client SDK</td>
+<td>dto</td>
+<td>服务对外的DTO</td>
+<td>是</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>​    这点很重要，应该👂🏻进作者的良言：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">为什么Domain的model是可选的？因为COLA是应用架构，不是DDD架构。在工作中，很多同学问我领域模型要怎么设计，我的回答通常是：无有必要勿增实体。领域模型对设计能力要求很高，没把握用好，一个错误的抽象还不如不抽象，宁可不要用，也不要滥用，不要为了DDD而DDD。</span><br><span class="line"></span><br><span class="line">问题的关键是要看，新增的模型没有给你带来收益。比如有没有帮助系统解耦，有没有提升业务语义表达能力的提升，有没有提升系统的可维护性和可测性等等。</span><br><span class="line"></span><br><span class="line">模型虽然可选，但DDD的思想是一定要去学习和贯彻的，特别是统一语言、边界上下文、防腐层的思想，值得深入学习，仔细体会。实际上，COLA里面的很多设计思想都来自于DDD。其中就包括领域包的设计。</span><br></pre></td></tr></table></figure>
+
+<p>​    前面的包定义，都是功能维度的定义。为了兼顾领域维度的内聚性，我们有必要对包结构进行一下微调，即顶层包结构应该是按照领域划分，让领域内聚。</p>
+<p>​    也就是说，我们要综合考虑功能和领域两个维度包结构定义。按照领域和功能两个维度分包策略，最后呈现出来的，是如下图所示的顶层包节点是领域名称，领域之下，再按功能划分包结构。<br><img src="https://zivlnoff.github.io/graph/image-20211214220549484.png"></p>
+<p>例如，在我们刚刚上线的一个云店铺（cloudstore）项目中，按照COLA的分包策略，我们在每一个module下面首先按照领域做一个顶层划分，然后在领域内，再按照功能进行分包。<br><img src="https://zivlnoff.github.io/graph/image-20211214220540738.png"></p>
+<p>​    “高内聚，低耦合”这句话，你工作的越久，就越会觉得其有道理。</p>
+<p>​    <strong>所谓耦合就是联系的紧密程度，只要有依赖就会有耦合，不管是进程内的依赖，还是跨进程的RPC依赖，都会产生耦合</strong>。依赖不可消除，同样，耦合也不可避免。我们所能做的不是消除耦合，而是把耦合降低到可以接受的程度。在软件设计中，有大量的设计模式，设计原则都是为了解耦这一目的。</p>
+<p>​    在DDD中有一个很棒的解耦设计思想——防腐层（Anti-Corruption），简单说，就是应用不要直接依赖外域的信息，要把外域的信息转换成自己领域上下文（Context）的实体再去使用，从而实现本域和外部依赖的解耦。</p>
+<p>​    在COLA中，我们把AC这个概念进行了泛化，将数据库、搜索引擎等数据存储都列为外部依赖的范畴。<strong>利用依赖倒置，统一使用gateway来实现业务领域和外部依赖的解耦</strong>。</p>
+<p>​    其实现方式如下图所示，主要是在Domain层定义Gateway接口，然后在Infrastructure提供Gateway接口的实现。<br><img src="https://zivlnoff.github.io/graph/image-20211214220430164.png"></p>
+<p>举个例子，假如有一个电商系统，对于下单这个操作，它需要联动订单服务、商品服务、库存服务、营销服务等多个系统才能完成。</p>
+<p>那么在订单域，该如何获取商品和库存信息呢？最直接的方式，无外乎就是RPC调用商品和库存服务，拿到DTO直接使用就完了。</p>
+<p>然而，商品域吐出的是一个大而全的DTO（可能包含几十个字段），而在下单这个阶段，订单所需要的可能只是其中几个字段而已。更合适的做法，应该是在订单域中，使用gateway对商品域和库存域的依赖进行解耦。<br><img src="https://zivlnoff.github.io/graph/image-20211214220305848.png"></p>
+<p>​    这样做有两个好处，一个是降低了对外域信息依赖的耦合；另一个是通过上下文映射（Context mapping），确保本领域边界上下文（Bounded context）下领域知识的完整性，实现了统一语言（Ubiquitous language）。</p>
+<p>​    然后，cola全副武装的威力绽放了</p>
+<ul>
+<li><p>COLA架构：关注应用架构的定义和构建，提升应用质量。</p>
+</li>
+<li><p>COLA组件：提供应用开发所需要的可复用组件，提升研发效率。</p>
+</li>
+</ul>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214220118040.png"></p>
+<p>​    我觉得能把以下理解好，就能理解计算机中很重要的一个概念，所以我把它毫无保留的摘抄了下来————任何难以直接实现的目的，都可以通过一层抽象去完成。</p>
+<h1 id="摘录：-1"><a href="#摘录：-1" class="headerlink" title="摘录："></a>摘录：</h1><h4 id="新二方库定位"><a href="#新二方库定位" class="headerlink" title="新二方库定位"></a>新二方库定位</h4><p>关于二方库的定位表面上来看，是一个简单问题，<strong>因为服务的二方库无外乎就是用来暴露接口和传递数据的（DTO）。不过，往深层次思考，它并不是一个简单的问题，因为它涉及到不同界限上下文（Bounded Context）之间的协作问题。</strong> 它是分布式环境下，不同服务（SOA，RPC，微服务，叫法不同，本质一样）之间如何协作的重要架构设计问题。</p>
+<h5 id="Bounded-Context之间的协作"><a href="#Bounded-Context之间的协作" class="headerlink" title="Bounded Context之间的协作"></a>Bounded Context之间的协作</h5><p>如何实现不同域之间的协作，同时又要保证各自领域的概念的完整性是有一套方法论的。总体来说，大概有两种方式：共享内核（Shared Kernel）和防腐层（ACL，Anti-Corruption Layer）。</p>
+<p><strong>1. 共享内核（Shared Kernel）</strong></p>
+<blockquote>
+<p>It’s possible that only one of the teams will maintain the code, build, and test for what is shared. A Shared Kernel is often very difficult to conceive in the first place, and difficult to maintain, because you must have open communication between teams and constant agreement on what constitutes the model to be shared.</p>
+</blockquote>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214223739272.png"></p>
+<p>上面是引用《DDD Distilled》（作者是Vaughn Vernon）关于Shared Kernel描述的原话，其优点是Share（减少重复建设），其缺点也是Share（团队之间紧耦合）。</p>
+<p><strong>2. 防腐层（ACL，Anti-Corruption Layer）</strong></p>
+<blockquote>
+<p>An Anticorruption Layer is the most defensive Context Mapping relationship, where the downstream team creates a translation layer between its Ubiquitous Language (model) and the Ubiquitous Language (model) that is upstream to it.</p>
+</blockquote>
+<p><img src="https://zivlnoff.github.io/graph/image-20211214223306039.png"></p>
+<p>同样是来自于《DDD Distilled》, 防腐层是隔离最彻底的做法，其优点是没有Share（完全解耦，各自独立），其缺点也是没有Share（有一定的转换成本）。</p>
+<p><strong>不过我和Vernon的观点差不多，都比较赞成防腐层的做法。因为增加的语义转换陈本，相较于系统的可维护性和可理解性而言，是完全值得的。</strong></p>
+<blockquote>
+<p>Whenever possible, you should try to create an Anticorruption Layer between your downstream model and an upstream integration model, so that you can produce model concepts on your side of the integration that specifically fit your business needs and that keep you completely isolated from foreign concepts.</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/" data-id="ckx66m5dj0000bgm4bajkedjd" data-title="实习俩月再看cola" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/12/15/%E4%BD%A0%E6%AF%94%E8%BF%B7%E5%AE%AB%E6%9B%B4%E7%BE%8E/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          你比迷宫更美
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/12/03/mac%E5%AE%89%E8%A3%85qemu/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mac安装qemu</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/12/17/%E7%95%99%E4%B8%8B/">留下</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/16/%E5%9C%A8%E6%88%90%E9%95%BF/">在成长</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/15/JOS-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">JOS-内存管理</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/15/%E4%BD%A0%E6%AF%94%E8%BF%B7%E5%AE%AB%E6%9B%B4%E7%BE%8E/">你比迷宫更美</a>
+          </li>
+        
+          <li>
+            <a href="/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/">实习俩月再看cola</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 ColvTzzi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
