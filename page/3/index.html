@@ -3,35 +3,29 @@
 <head>
   <meta charset="utf-8">
   
+
   
-  <title>有种🌹少年是MayDay</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>好奇小小峥</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="有种🌹少年是MayDay">
+<meta property="og:title" content="好奇小小峥">
 <meta property="og:url" content="http://example.com/page/3/index.html">
-<meta property="og:site_name" content="有种🌹少年是MayDay">
+<meta property="og:site_name" content="好奇小小峥">
 <meta property="og:locale" content="en_US">
-<meta property="article:author" content="ColvTzzi">
+<meta property="article:author" content="ColvTZzi">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="有种🌹少年是MayDay" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="好奇小小峥" type="application/atom+xml">
   
   
-    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.png">
   
   
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   
   
 <link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body>
@@ -42,7 +36,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">有种🌹少年是MayDay</a>
+        <a href="/" id="logo">好奇小小峥</a>
       </h1>
       
     </div>
@@ -67,14 +61,13 @@
     </div>
   </div>
 </header>
-
       <div class="outer">
         <section id="main">
   
-    <article id="post-JOS-内存管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-我在阿里实习的57天" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2021/12/15/JOS-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2021-12-15T13:54:38.000Z" itemprop="datePublished">2021-12-15</time>
+    <a href="/2021/12/24/%E6%88%91%E5%9C%A8%E9%98%BF%E9%87%8C%E5%AE%9E%E4%B9%A0%E7%9A%8457%E5%A4%A9/" class="article-date">
+  <time datetime="2021-12-24T02:48:14.000Z" itemprop="datePublished">2021-12-24</time>
 </a>
     
   </div>
@@ -85,26 +78,69 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/12/15/JOS-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">JOS-内存管理</a>
+      <a class="article-title" href="/2021/12/24/%E6%88%91%E5%9C%A8%E9%98%BF%E9%87%8C%E5%AE%9E%E4%B9%A0%E7%9A%8457%E5%A4%A9/">我在阿里实习的57天</a>
     </h1>
   
 
       </header>
     
-    <div class="e-content article-entry" itemprop="articleBody">
+    <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="物理地址分配"><a href="#物理地址分配" class="headerlink" title="物理地址分配"></a>物理地址分配</h1><p><img src="https://zivlnoff.github.io/graph/image-20211215215515285.png"></p>
-<p><img src="https://zivlnoff.github.io/graph/image-20211216120728064.png"></p>
-<p><img src="https://zivlnoff.github.io/graph/image-20211216120803901.png"></p>
-<p>我做完了哈哈哈哈哈哈哈哈😄</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">C02C8343LVDL:lab2 alsc$ make qemu</span><br><span class="line">+ cc kern/pmap.c</span><br><span class="line">+ ld obj/kern/kernel</span><br><span class="line">/usr/local/bin/i386-elf-ld: warning: section `.bss<span class="number">&#x27;</span> type changed to PROGBITS</span><br><span class="line">+ mk obj/kern/kernel.img</span><br><span class="line">../../qemu/bin/qemu-system-i386 -drive file=obj/kern/kernel.img,index=<span class="number">0</span>,media=disk,format=raw -serial mon:stdio -gdb tcp::<span class="number">25601</span> -D qemu.<span class="built_in">log</span> </span><br><span class="line"></span><br><span class="line">lab1 start------------------------------------------------------------------------------------------------</span><br><span class="line"><span class="number">6828</span> decimal is <span class="number">15254</span> octal!</span><br><span class="line">He110 World!</span><br><span class="line">entering test_backtrace <span class="number">5</span></span><br><span class="line">entering test_backtrace <span class="number">4</span></span><br><span class="line">entering test_backtrace <span class="number">3</span></span><br><span class="line">entering test_backtrace <span class="number">2</span></span><br><span class="line">entering test_backtrace <span class="number">1</span></span><br><span class="line">entering test_backtrace <span class="number">0</span></span><br><span class="line">  ebp f0116f08  eip f010008f  args <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> f0116f18</span><br><span class="line">              kern/init.c:<span class="number">16</span>:  test_backtrace+<span class="number">79</span></span><br><span class="line">  ebp f0116f28  eip f0100068  args <span class="number">00000000</span> <span class="number">00000001</span> f0116f68 <span class="number">00000000</span> f0116f18</span><br><span class="line">              kern/init.c:<span class="number">16</span>:  test_backtrace+<span class="number">40</span></span><br><span class="line">  ebp f0116f48  eip f0100068  args <span class="number">00000001</span> <span class="number">00000002</span> f0116f88 <span class="number">00000000</span> f0116f18</span><br><span class="line">              kern/init.c:<span class="number">16</span>:  test_backtrace+<span class="number">40</span></span><br><span class="line">  ebp f0116f68  eip f0100068  args <span class="number">00000002</span> <span class="number">00000003</span> f0116fa8 <span class="number">00000000</span> f0116f18</span><br><span class="line">              kern/init.c:<span class="number">16</span>:  test_backtrace+<span class="number">40</span></span><br><span class="line">  ebp f0116f88  eip f0100068  args <span class="number">00000003</span> <span class="number">00000004</span> <span class="number">00000000</span> <span class="number">00000000</span> f0116f18</span><br><span class="line">              kern/init.c:<span class="number">16</span>:  test_backtrace+<span class="number">40</span></span><br><span class="line">  ebp f0116fa8  eip f0100068  args <span class="number">00000004</span> <span class="number">00000005</span> <span class="number">00000000</span> <span class="number">00010074</span> f0116f18</span><br><span class="line">              kern/init.c:<span class="number">16</span>:  test_backtrace+<span class="number">40</span></span><br><span class="line">  ebp f0116fc8  eip f01000fd  args <span class="number">00000005</span> <span class="number">0000e110</span> f0116fec <span class="number">00000000</span> f0116f18</span><br><span class="line">              kern/init.c:<span class="number">58</span>:  i386_init+<span class="number">105</span></span><br><span class="line">  ebp f0116ff8  eip f010003e  args <span class="number">00118021</span> <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000000</span> f0116f18</span><br><span class="line">              &#123;standard input&#125;:<span class="number">0</span>:  &lt;unknown&gt;+<span class="number">0</span></span><br><span class="line">leaving test_backtrace <span class="number">0</span></span><br><span class="line">leaving test_backtrace <span class="number">1</span></span><br><span class="line">leaving test_backtrace <span class="number">2</span></span><br><span class="line">leaving test_backtrace <span class="number">3</span></span><br><span class="line">leaving test_backtrace <span class="number">4</span></span><br><span class="line">leaving test_backtrace <span class="number">5</span></span><br><span class="line">lab1 end--------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">lab2 start------------------------------------------------------------------------------------------------</span><br><span class="line">Physical memory: <span class="number">0x20000</span>K available          base = <span class="number">0x280</span>K           extended = <span class="number">0x1fd80</span>K</span><br><span class="line"><span class="keyword">sizeof</span>(<span class="keyword">uint16_t</span>):<span class="number">0x2</span></span><br><span class="line">npages:<span class="number">0x8000</span>        <span class="keyword">sizeof</span>(Struct PageInfo):<span class="number">0x8</span></span><br><span class="line">名称:kern_pgdir      虚拟地址:<span class="number">0xf011a000</span>             页目录项:<span class="number">0x3c0</span>          物理地址:<span class="number">0x11a000</span>       物理页:<span class="number">0x11a</span></span><br><span class="line">名称:UVPT            虚拟地址:<span class="number">0xef400000</span>             页目录项:<span class="number">0x3bd</span>          物理地址:<span class="number">0x11a000</span>       物理页:<span class="number">0x11a</span></span><br><span class="line">pages占用空间:<span class="number">256</span>K</span><br><span class="line">名称:pages           虚拟地址:<span class="number">0xf011b000</span>             页目录项:<span class="number">0x3c0</span>          物理地址:<span class="number">0x11b000</span>       物理页:<span class="number">0x11b</span></span><br><span class="line">qemu空闲物理内存:[<span class="number">0x1000</span>, <span class="number">0xa0000</span>]           [<span class="number">0x15b000</span>, <span class="number">0x8000000</span>)</span><br><span class="line">初始page_free_list:<span class="number">0x0</span></span><br><span class="line">名称:page_free_list          虚拟地址:<span class="number">0xf015aff8</span>             页目录项:<span class="number">0x3c0</span>          物理地址:<span class="number">0x15aff8</span>       物理页:<span class="number">0x15a</span></span><br><span class="line"></span><br><span class="line">************* Now Check that the pages on the page_free_list are reasonable ************</span><br><span class="line">pp:<span class="number">0x0</span>       pp1:<span class="number">0xf011cff8</span>          pp2:<span class="number">0xf015aff8</span>          *tp[<span class="number">1</span>]:<span class="number">0xf011cff8</span>       *tp[<span class="number">0</span>]:<span class="number">0x0</span>      tp[<span class="number">0</span>]:<span class="number">0xf011b008</span>        tp[<span class="number">1</span>]:<span class="number">0xf011d000</span></span><br><span class="line">first_free_page:<span class="number">0xf015b000</span></span><br><span class="line">nfree_basemem:<span class="number">0x9f</span>           nfree_extmem:<span class="number">0x7ea5</span></span><br><span class="line">物理内存占用中页数:<span class="number">0xbc</span></span><br><span class="line">check_page_free_list() succeeded!</span><br><span class="line"></span><br><span class="line">************* Now check the real physical page allocator (page_alloc(), page_free(), <span class="keyword">and</span> page_init())************</span><br><span class="line">check_page_alloc() succeeded!</span><br><span class="line"></span><br><span class="line">************* Now check page_insert, page_remove, &amp;c **************</span><br><span class="line">PTE_ADDR(kern_pgdir[PDX(va)]):<span class="number">0x3ff000</span>       kern_pgdir[PDX(va)]:<span class="number">0x3ff003</span>            ptep:<span class="number">0xf03ff004</span>         ptep1:<span class="number">0xf03ff000</span>        PTX(va):<span class="number">0x1</span></span><br><span class="line">check_page() succeeded!</span><br><span class="line"></span><br><span class="line">************* Now we <span class="built_in">set</span> up <span class="keyword">virtual</span> memory **************</span><br><span class="line">名称:UVPT            虚拟地址:<span class="number">0xef400000</span>             页目录项:<span class="number">0x3bd</span>          物理地址:<span class="number">0x11a000</span>       物理页:<span class="number">0x11a</span></span><br><span class="line">名称:pages           虚拟地址:<span class="number">0xf011b000</span>             页目录项:<span class="number">0x3c0</span>          物理地址:<span class="number">0x11b000</span>       物理页:<span class="number">0x11b</span></span><br><span class="line"></span><br><span class="line">************* Now we <span class="built_in">map</span> <span class="string">&#x27;pages&#x27;</span> read-only by the user at linear address UPAGES **************</span><br><span class="line">page2pa(pages):<span class="number">0x0</span></span><br><span class="line"></span><br><span class="line">************* Now use the physical memory that <span class="string">&#x27;bootstack&#x27;</span> refers to as the kernel <span class="built_in">stack</span> **************</span><br><span class="line"></span><br><span class="line">************* Now <span class="built_in">map</span> all of physical memory at KERNBASE. **************</span><br><span class="line"></span><br><span class="line">************* Now check that the initial page directory has been <span class="built_in">set</span> up correctly **************</span><br><span class="line">check_va2pa(pgdir, UPAGES + <span class="number">0</span>):<span class="number">0x11b000</span>      PADDR(pages) + <span class="number">0</span>:<span class="number">0x11b000</span></span><br><span class="line">check_kern_pgdir() succeeded!</span><br><span class="line"></span><br><span class="line">************* Now check that the pages on the page_free_list are reasonable. **************</span><br><span class="line">first_free_page:<span class="number">0xf015b000</span></span><br><span class="line">nfree_basemem:<span class="number">0x9f</span>           nfree_extmem:<span class="number">0x7e63</span></span><br><span class="line">物理内存占用中页数:<span class="number">0xfe</span></span><br><span class="line">check_page_free_list() succeeded!</span><br><span class="line"></span><br><span class="line">************* Now check page_insert, page_remove, &amp;c, with an installed kern_pgdir **************</span><br><span class="line">check_page_installed_pgdir() succeeded!</span><br><span class="line">lab2 end--------------------------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Welcome to the JOS kernel monitor!</span><br><span class="line">Type <span class="string">&#x27;help&#x27;</span> <span class="keyword">for</span> a <span class="built_in">list</span> of commands.</span><br><span class="line">K&gt; QEMU <span class="number">2.3</span><span class="number">.0</span> monitor - type <span class="string">&#x27;help&#x27;</span> <span class="keyword">for</span> more information</span><br><span class="line">(qemu) info pg</span><br><span class="line">VPN range     Entry         Flags        Physical page</span><br><span class="line">[ef000-ef3ff]  PDE[<span class="number">3b</span>c]     --------WP</span><br><span class="line">  [ef000-ef03f]  PTE[<span class="number">000</span><span class="number">-03f</span>] -------U-P <span class="number">0011b</span><span class="number">-0015</span>a</span><br><span class="line">[ef400-ef7ff]  PDE[<span class="number">3b</span>d]     -------U-P</span><br><span class="line">  [ef7bc-ef7bc]  PTE[<span class="number">3b</span>c]     --------WP <span class="number">003f</span>d</span><br><span class="line">  [ef7bd-ef7bd]  PTE[<span class="number">3b</span>d]     -------U-P <span class="number">0011</span>a</span><br><span class="line">  [ef7bf-ef7bf]  PTE[<span class="number">3b</span>f]     --------WP <span class="number">003f</span>e</span><br><span class="line">  [ef7c0-ef7df]  PTE[<span class="number">3</span>c0<span class="number">-3</span>df] ----A---WP <span class="number">003f</span>f <span class="number">003f</span>c <span class="number">003f</span>b <span class="number">003f</span>a <span class="number">003f</span>9 <span class="number">003f</span>8 ..</span><br><span class="line">  [ef7e0-ef7ff]  PTE[<span class="number">3e0</span><span class="number">-3f</span>f] --------WP <span class="number">003</span>dd <span class="number">003</span>dc <span class="number">003</span>db <span class="number">003</span>da <span class="number">003</span>d9 <span class="number">003</span>d8 ..</span><br><span class="line">[efc00-effff]  PDE[<span class="number">3b</span>f]     --------WP</span><br><span class="line">  [efff8-effff]  PTE[<span class="number">3f</span>8<span class="number">-3f</span>f] ---------P <span class="number">0010f</span><span class="number">-00116</span></span><br><span class="line">[f0000-f03ff]  PDE[<span class="number">3</span>c0]     ----A---WP</span><br><span class="line">  [f0000-f0000]  PTE[<span class="number">000</span>]     --------WP <span class="number">00000</span></span><br><span class="line">  [f0001-f009f]  PTE[<span class="number">001</span><span class="number">-09f</span>] ---DA---WP <span class="number">00001</span><span class="number">-0009f</span></span><br><span class="line">  [f00a0-f00b7]  PTE[<span class="number">0</span>a0<span class="number">-0b</span>7] --------WP <span class="number">000</span>a0<span class="number">-000b</span>7</span><br><span class="line">  [f00b8-f00b8]  PTE[<span class="number">0b</span>8]     ---DA---WP <span class="number">000b</span>8</span><br><span class="line">  [f00b9-f00ff]  PTE[<span class="number">0b</span>9<span class="number">-0f</span>f] --------WP <span class="number">000b</span>9<span class="number">-000f</span>f</span><br><span class="line">  [f0100-f0105]  PTE[<span class="number">100</span><span class="number">-105</span>] ----A---WP <span class="number">00100</span><span class="number">-00105</span></span><br><span class="line">  [f0106-f0115]  PTE[<span class="number">106</span><span class="number">-115</span>] --------WP <span class="number">00106</span><span class="number">-00115</span></span><br><span class="line">  [f0116-f0116]  PTE[<span class="number">116</span>]     ---DA---WP <span class="number">00116</span></span><br><span class="line">  [f0117-f0118]  PTE[<span class="number">117</span><span class="number">-118</span>] --------WP <span class="number">00117</span><span class="number">-00118</span></span><br><span class="line">  [f0119-f011a]  PTE[<span class="number">119</span><span class="number">-11</span>a] ---DA---WP <span class="number">00119</span><span class="number">-0011</span>a</span><br><span class="line">  [f011b-f011b]  PTE[<span class="number">11b</span>]     ----A---WP <span class="number">0011b</span></span><br><span class="line">  [f011c-f011c]  PTE[<span class="number">11</span>c]     ---DA---WP <span class="number">0011</span>c</span><br><span class="line">  [f011d-f015a]  PTE[<span class="number">11</span>d<span class="number">-15</span>a] ----A---WP <span class="number">0011</span>d<span class="number">-0015</span>a</span><br><span class="line">  [f015b-f03bd]  PTE[<span class="number">15b</span><span class="number">-3b</span>d] ---DA---WP <span class="number">0015b</span><span class="number">-003b</span>d</span><br><span class="line">  [f03be-f03ff]  PTE[<span class="number">3b</span>e<span class="number">-3f</span>f] --------WP <span class="number">003b</span>e<span class="number">-003f</span>f</span><br><span class="line">[f0400-f7fff]  PDE[<span class="number">3</span>c1<span class="number">-3</span>df] ----A---WP</span><br><span class="line">  [f0400-f7fff]  PTE[<span class="number">000</span><span class="number">-3f</span>f] ---DA---WP <span class="number">00400</span><span class="number">-07f</span>ff</span><br><span class="line">[f8000-fffff]  PDE[<span class="number">3e0</span><span class="number">-3f</span>f] --------WP</span><br><span class="line">  [f8000-fffff]  PTE[<span class="number">000</span><span class="number">-3f</span>f] --------WP <span class="number">08000</span><span class="number">-0f</span>fff</span><br><span class="line">(qemu) </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
+        <h1 id="在成长"><a href="#在成长" class="headerlink" title="在成长"></a>在成长</h1><h1 id="2021-10-21—成长的起点"><a href="#2021-10-21—成长的起点" class="headerlink" title="2021.10.21—成长的起点"></a>2021.10.21—成长的起点</h1><p> 至于我初入宫有多菜，我自己深知，但这些日子，只有一天出去玩了一整天剧本杀，所以也算是尽力了，我想朋友们。</p>
+<p> 这篇文章是想总结一下这些天在各方各面学到的”财富“，虽然呆的时间不长，但收获不菲。</p>
+<h2 id="技术汇总"><a href="#技术汇总" class="headerlink" title="技术汇总"></a>技术汇总</h2><ul>
+<li>手写Spring IOC和AOP <strong>（IOC和AOP的思想）</strong></li>
+<li>设计模式 <strong>（SOLID)</strong></li>
+<li>maven</li>
+<li>git <strong>（太好用了）</strong></li>
+<li>json</li>
+<li>mybatis</li>
+<li>RPC <strong>（RPC之于微服务）</strong></li>
+<li>环境（版本）隔离</li>
+<li>配置中心</li>
+<li>定时任务</li>
+<li>流量削峰 <strong>(消息队列)</strong></li>
+<li>DDD <strong>(充血模型和统一语言)</strong></li>
+<li>日志、监控、核对（补偿）、兜底、降级、限流</li>
+<li>全局唯一ID <strong>（雪花算法)</strong></li>
+<li>热部署</li>
+<li>分布式一致性 <strong>（Raft算法）</strong></li>
+<li>cola框架 <strong>（🐂)</strong></li>
+<li>Redis <strong>(缓存、分布式锁、发布订阅)</strong></li>
+<li>CodeReview</li>
+<li>JOS <strong>(这不是技术，是人生态度)</strong></li>
+<li>技术方案设计</li>
+</ul>
+<p>实习前，除了JOS和git，其他最多也只是听说有这个东东。</p>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><ul>
+<li>简单工厂</li>
+<li>抽象工厂</li>
+<li>代理模式 <strong>（AOP)</strong></li>
+<li>策略模式 <strong>(扩展点)</strong></li>
+<li>建造者模式</li>
+<li>状态模式 <strong>（电梯）</strong></li>
+<li>facade <strong>（repository）</strong></li>
+<li>原型设计模式</li>
+<li>命令模式 <strong>（事件）</strong></li>
+<li>责任链 <strong>（类等级制度）</strong></li>
+<li>适配器 <strong>（防腐层</strong>）</li>
+<li>桥梁模式 <strong>（中心）</strong></li>
+</ul>
+<h3 id="技术方案设计"><a href="#技术方案设计" class="headerlink" title="技术方案设计"></a>技术方案设计</h3><ul>
+<li>基于缓存方案的库存扣减方案</li>
+<li>反向索引</li>
+<li>顺序消息</li>
+<li>扩展点</li>
+<li>流量削峰</li>
+<li>令牌桶</li>
+<li>传统数据库能否实现分布式场景下的一致性</li>
+<li>单元化的业务场景取舍</li>
+</ul>
+<h2 id="哲学汇总"><a href="#哲学汇总" class="headerlink" title="哲学汇总"></a>哲学汇总</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/12/15/JOS-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" data-id="ckx7ls56p0000gam40oxlc2l2" data-title="JOS-内存管理" class="article-share-link">Share</a>
-      
+      <a data-url="http://example.com/2021/12/24/%E6%88%91%E5%9C%A8%E9%98%BF%E9%87%8C%E5%AE%9E%E4%B9%A0%E7%9A%8457%E5%A4%A9/" data-id="ckxjsvqlr0006nkv1acsya7g4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -113,13 +149,12 @@
 </article>
 
 
-
   
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -138,7 +173,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li></ul>
     </div>
   </div>
 
@@ -151,23 +186,23 @@
       <ul>
         
           <li>
-            <a href="/2021/12/17/%E7%95%99%E4%B8%8B/">留下</a>
+            <a href="/2021/12/24/JOS%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">JOS内存管理</a>
           </li>
         
           <li>
-            <a href="/2021/12/16/%E5%9C%A8%E6%88%90%E9%95%BF/">在成长</a>
+            <a href="/2021/12/24/%E5%86%8D%E7%9C%8Bcola/">再看cola</a>
           </li>
         
           <li>
-            <a href="/2021/12/15/JOS-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">JOS-内存管理</a>
+            <a href="/2021/12/24/%E6%88%91%E5%9C%A8%E9%98%BF%E9%87%8C%E5%AE%9E%E4%B9%A0%E7%9A%8457%E5%A4%A9/">我在阿里实习的57天</a>
           </li>
         
           <li>
-            <a href="/2021/12/15/%E4%BD%A0%E6%AF%94%E8%BF%B7%E5%AE%AB%E6%9B%B4%E7%BE%8E/">你比迷宫更美</a>
+            <a href="/2021/12/24/JOS%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/">JOS技术方案</a>
           </li>
         
           <li>
-            <a href="/2021/12/14/%E5%AE%9E%E4%B9%A0%E4%BF%A9%E6%9C%88%E5%86%8D%E7%9C%8Bcola/">实习俩月再看cola</a>
+            <a href="/2021/12/24/mac%E5%AE%89%E8%A3%85Jos-qemu%E7%8E%AF%E5%A2%83/">mac安装Jos qemu环境</a>
           </li>
         
       </ul>
@@ -182,13 +217,11 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      
-      &copy; 2021 ColvTzzi<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+      &copy; 2021 ColvTZzi<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
-
     </div>
     <nav id="mobile-nav">
   
@@ -199,19 +232,19 @@
 </nav>
     
 
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
   
-<script src="/fancybox/jquery.fancybox.min.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 
 
 <script src="/js/script.js"></script>
-
 
 
 
